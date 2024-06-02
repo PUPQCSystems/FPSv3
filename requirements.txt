@@ -1,0 +1,15 @@
+django
+django-widget-tweaks
+psycopg2
+python-decouple
+validate-email
+validate-email-address
+email-validate
+django-widget-tweaks
+gunicorn
+djangorestframework
+requests
+dj-database-url
+XlsxWriter
+bytesbufio
+fuzzywuzzy

@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Faculty Performance System v.3</title>
+    {% include 'partials/_cs.html' %}
+</head>
+<body>
+    <div class="page page-center">
+        <div class="container container-tight py-4">
+            <div class="card card-md">
+                <div class="card-body">
+                    <h2 class="h2 text-center mb-4">Login to your account</h2>
+                    <form action="{% url 'login' %}" method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="username" class="form-control {% if messages and not messages|length_is:'0' %}is-invalid{% endif %}" placeholder="Enter your email" autocomplete="off" id="email-input">
+                            <div class="invalid-feedback" id="email-error">   
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        {{ message }}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Password</label>
+                            <div class="input-group" style="box-shadow: none;">
+                                <input type="password" name="password" class="form-control {% if messages and not messages|length_is:'0' %}is-invalid{% endif %}" id="password" placeholder="Enter your password" autocomplete="off">
+                                <span class="input-group-text">
+                                    <a href="#" class="link-secondary" id="toggle-password" title="Show password">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="eye-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="eye-off-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>
+                                    </a>
+                                </span>
+                                <span class="invalid-feedback" id="pass-error">   
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            {{ message }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        <script>
+                            const passInput = document.getElementById('password');
+                            const passError = document.getElementById('pass-error');
+                            passInput.addEventListener('input', function() {
+                                passError.style.display = 'none';
+                                passInput.classList.remove('is-invalid');
+                            });
+                        </script>
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body"> 
+                    <div class="row text-center">
+                                        
+                        <p class="text-sm text-gray-600">By using this service, you understood, agree, and follow <br/> to the Polytechnic University of the Philippines
+                            <br/><a href="https://www.pup.edu.ph/terms/" class="text-decoration-underline text-blue fst-normal fw-medium">Terms of Use</a>
+                            and <a href="https://www.pup.edu.ph/privacy/" class="text-decoration-underline text-blue fst-normal fw-medium">Privacy Statement</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'partials/_footer.html' %}
+</body>
+    {% include 'partials/_js.html' %}
+</html>

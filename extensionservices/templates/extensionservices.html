@@ -1,0 +1,398 @@
+{% extends "fps.html" %}
+{% load static %}
+
+{% block content %}
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Service to the Community
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-body">
+    <div class="container-xl">
+        {% comment %} Table Modal: Extension Activities {% endcomment %}
+        <div class="modal modal-blur fade" id="modal-extension" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="min-width: 1080px !important;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="alert-primary" role="alert">
+                            <div class="d-flex">
+                                <div>
+                                    <h5 class="modal-title">No. of Extension Activities in PUPQC Per Year</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><button class="table-sort">Extension Activity</button></th>
+                                    <th><button class="table-sort">Date of Activity</button></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                                <tr>
+                                    <td>Health Awareness, Digital Literacy, and Enhancing Work Productivity: Towards an Equipped Filipino Worker in the Midst of the Pandemic</td>
+                                    <td>Jun. 02-27,2024</td>
+                                </tr>
+                                <tr>
+                                    <td>Health Awareness, Digital Literacy, and Enhancing Work Productivity: Towards an Equipped Filipino Worker in the Midst of the Pandemic</td>
+                                    <td>Jun. 02-27,2024</td>
+                                </tr>
+                                <tr>
+                                    <td>Health Awareness, Digital Literacy, and Enhancing Work Productivity: Towards an Equipped Filipino Worker in the Midst of the Pandemic</td>
+                                    <td>Jun. 02-27,2024</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% comment %} Table Modal: Role Percentage {% endcomment %}
+        <div class="modal modal-blur fade" id="modal-extension-percentage" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="min-width: 1080px !important;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="alert-primary" role="alert">
+                            <div class="d-flex">
+                                <div>
+                                    <h5 class="modal-title">List of Participant</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><button class="table-sort">Faculty</button></th>
+                                    <th><button class="table-sort">Extension Activity</button></th>
+                                    <th><button class="table-sort">Role</button></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                                <tr>
+                                    <td>Alma A. Fernandez</td>
+                                    <td>Health Awareness, Digital Literacy, and Enhancing Work Productivity: Towards an Equipped Filipino Worker in the Midst of the Pandemic</td>
+                                    <td>Head</td>
+                                </tr>
+                                <tr>
+                                    <td>Christian O. Balatbat</td>
+                                    <td>Health Awareness, Digital Literacy, and Enhancing Work Productivity: Towards an Equipped Filipino Worker in the Midst of the Pandemic</td>
+                                    <td>Participant</td>
+                                </tr>
+                                <tr>
+                                    <td>Leandro B. Avena III</td>
+                                    <td>Health Awareness, Digital Literacy, and Enhancing Work Productivity: Towards an Equipped Filipino Worker in the Midst of the Pandemic</td>
+                                    <td>Participant</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% comment %} Detail Modal: Extensions Based {% endcomment %}
+        <div class="modal modal-blur fade" id="modal-ext-detail" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="alert-primary" role="alert">
+                            <div class="d-flex">
+                                <div>
+                                    <h5 class="modal-title">Extension Services Performance</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="py-2">
+                            <div class="row">
+                                <h4 class="col-auto col-lg-6">Faculty Name:</h4>
+                                <span class="col-auto col-lg-6">Alma A. Fernandez</span>
+                            </div>
+                            <div class="row">
+                                <h4 class="col-auto col-md-6">Performance Score:</h4>
+                                <div class="col-auto col-md-6">
+                                    <span class="col-auto">5 points</span>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="py-2">
+                            <div class="row">
+                                <div class="accordion p-0" id="accordionExample">
+                                    <div class="accordion-item" style="border: 0px !important;">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button p-2 collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Metrics
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <div class="py-2">
+                                                    <p class="py-1 text-muted">
+                                                        The formula calculates the points for every participation in every service-oriented project in the community participated, including advocacy initiatives based on the role specified. The points are assigned as follows:
+                                                        <p class="text-muted">
+                                                            <div class="row">
+                                                                <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                                    <li>Head</li>
+                                                                    <li>Participant</li>
+                                                                </ul>
+                                                                <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                                    <li><span>: 5 points</span></li>
+                                                                    <li><span>: 2 points</span></li>
+                                                                </ul>
+                                                            </div>
+                                                        </p>
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-auto">
+                                                            <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+                                                        </div>
+                                                        <h4 class="col-auto">Role:</h4>
+                                                        <span class="col-auto">Head</span>
+                                                    </div>
+                                                </div>
+                                                <div class="py-2">
+                                                    <p class="py-1 text-muted">
+                                                        The formula calculates the points for every participation in conference, training, workshops, and seminars based on the hours accumulated. The points are assigned as follows:
+                                                        <p class="text-muted">
+                                                            <div class="row">
+                                                                <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                                    <li>Spent Below 32 Hours</li>
+                                                                    <li>Spent Max. of 32 Hours</li>
+                                                                </ul>
+                                                                <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                                    <li><span>: 1 point</span></li>
+                                                                    <li><span>: 2 points</span></li>
+                                                                </ul>
+                                                            </div>
+                                                        </p>
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-auto">
+                                                            <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+                                                        </div>
+                                                        <h4 class="col-auto">Hours:</h4>
+                                                        <span class="col-auto">32</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% comment %} Analytics: Extension Counts {% endcomment %}
+        <div class="row row-deck row-cards">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <h3 class="col card-title mb-0 fw-bolder">No. of Extension Activities in PUPQC Per Year</h3>
+                            <div class="ms-auto lh-1">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-extension">
+                                    <span class="col">View</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="extensionCountsChart" class="chart-lg"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <h3 class="col card-title mb-0 fw-bolder">Participant Role Percentage</h3>
+                            <div class="ms-auto lh-1">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-extension-percentage">
+                                    <span class="col">View</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="participantRoleChart" class="chart-lg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% comment %} Table: Institutional Social Responsibility {% endcomment %}
+        <div class="card mt-4">
+            <div class="card-header pb-0">
+                <h3>Institutional Social Responsibility Services</h3>
+            </div>
+            <div class="card-body">
+                <div id="table-default" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><button class="table-sort">Faculty</button></th>
+                                <th><button class="table-sort">Extension Activity</button></th>
+                                <th><button class="table-sort">Community</button></th>
+                                <th><button class="table-sort">Role</button></th>
+                                <th><button class="table-sort">Date of Activity</button></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                            <tr>
+                                <td>Alma A. Fernandez</td>
+                                <td>Health Awareness, Digital Literacy, and Enhancing Work Productivity: Towards an Equipped Filipino Worker in the Midst of the Pandemic</td>
+                                <td>GRAIN Foundation / Barangay Commonwealth Quezon City</td>
+                                <td>Head</td>
+                                <td>Jun. 02-27,2024</td>
+                                <th><a href="#" data-bs-toggle="modal" data-bs-target="#modal-ext-detail" class="fw-medium">See Details</a></th>
+                            </tr>
+                            <tr>
+                                <td>Christian O. Balatbat</td>
+                                <td>Health Awareness, Digital Literacy, and Enhancing Work Productivity: Towards an Equipped Filipino Worker in the Midst of the Pandemic</td>
+                                <td>GRAIN Foundation / Barangay Commonwealth Quezon City</td>
+                                <td>Participant</td>
+                                <td>Jun. 02-27,2024</td>
+                                <th><a href="#" class="fw-medium">See Details</a></th>
+                            </tr>
+                            <tr>
+                                <td>Leandro B. Avena III</td>
+                                <td>Health Awareness, Digital Literacy, and Enhancing Work Productivity: Towards an Equipped Filipino Worker in the Midst of the Pandemic</td>
+                                <td>GRAIN Foundation / Barangay Commonwealth Quezon City</td>
+                                <td>Participant</td>
+                                <td>Jun. 02-27,2024</td>
+                                <th><a href="#" class="fw-medium">See Details</a></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://preview.tabler.io/dist/libs/apexcharts/dist/apexcharts.min.js?1695847769"></script>
+<script>
+    var options = {
+        chart: {
+            type: "line",
+            height: 350,
+            toolbar: {
+                show: false
+            },
+        },
+        series: [
+            {
+                name: "No. of Participated Faculties",
+                data: [56, 14, 69, 29, 28],
+            },
+        ],
+        xaxis: {
+            categories: ["2019", "2020", "2021", "2023", "2024"],
+            title: {
+                text: "Year",
+            },
+        },
+        yaxis: {
+            title: {
+                text: "Extension Activities",
+            },
+            max: 100,
+            min: 0,
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 2,
+            dashArray: 0, 
+        },
+        
+    };
+    var chart = new ApexCharts(document.getElementById("extensionCountsChart"), options);
+    chart.render();
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        window.ApexCharts && (new ApexCharts(document.getElementById('participantRoleChart'), {
+            chart: {
+                type: "pie",
+                fontFamily: 'inherit',
+                height: 370,
+                sparkline: {
+                    enabled: true
+                },
+                animations: {
+                    enabled: true
+                },
+            },
+            fill: {
+                opacity: 1,
+            },
+            series: [77, 23],
+            labels: ["Participant", "Head"],
+            dataLabels: {
+                enabled: true,
+                formatter: function (val, opts) {
+                    return val.toFixed(1) + "%";
+                },
+                style: {
+                    fontSize: '14px',
+                    fontFamily: 'inherit',
+                    colors: ["#fff"]
+                },
+                dropShadow: {
+                    enabled: false,
+                }
+            },
+            tooltip: {
+                theme: 'dark'
+            },
+            grid: {
+                strokeDashArray: 4,
+            },
+            colors: [
+                tabler.getColor("info"),
+                tabler.getColor("info", 0.4)
+            ],
+            legend: {
+                show: true,
+                position: 'bottom',
+                offsetY: 12,
+                markers: {
+                    width: 10,
+                    height: 10,
+                    radius: 100,
+                },
+                itemMargin: {
+                    horizontal: 8,
+                    vertical: 8
+                },
+            },
+            tooltip: {
+                fillSeriesColor: false
+            },
+        })).render();
+    });
+</script>
+{% endblock %}

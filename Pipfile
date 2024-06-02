@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+psycopg2 = "*"
+python-decouple = "*"
+validate-email = "*"
+validate-email-address = "*"
+email-validate = "*"
+django-widget-tweaks = "*"
+gunicorn = "*"
+djangorestframework = "*"
+requests = "*"
+dj-database-url = "*"
+xlsxwriter = "*"
+bytesbufio = "*"
+fuzzywuzzy = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

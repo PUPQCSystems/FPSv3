@@ -1,0 +1,15 @@
+var currentDate = new Date();
+var days =   ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var day = days[currentDate.getDay()];
+var month = months[currentDate.getMonth()].toUpperCase();
+var date = currentDate.getDate();
+var year = currentDate.getFullYear();
+var hour = currentDate.getHours();
+var minute = currentDate.getMinutes();
+var ampm = hour >= 12 ? 'PM' : 'AM';
+hour = hour % 12;
+hour = hour ? hour : 12;
+minute = minute < 10 ? '0' + minute : minute; 
+var formattedDate = day + ', ' + month + ' ' + date + ' ' + year + ', ' + hour + ':' + minute + ' ' + ampm;
+document.getElementById('currentDateTime').innerHTML = formattedDate;
