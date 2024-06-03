@@ -15,19 +15,54 @@
 </div>
 <div class="page-body">
     <div class="container-xl">
-        <div class="empty">
-            <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_quitting_time_dm8t.svg" height="128" alt="">
-            </div>
-            <p class="empty-title">Temporarily down for maintenance</p>
-            <p class="empty-subtitle text-secondary">
-                Sorry for the inconvenience but we’re performing some maintenance at the moment. We’ll be back online shortly!
-            </p>
-            <div class="empty-action">
-                <a href="{% url 'dashboard:dashboard' %}" class="btn btn-info">
-                    <!-- Download SVG icon from http://tabler-icons.io/i/arrow-left -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path d="M5 12l6 -6"></path></svg>
-                    Take me home
-                </a>    
+        {% comment %} Table: Reports {% endcomment %}
+        <div class="card ">
+            <div class="card-body">
+                <div id="table-default" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><button class="table-sort">Faculty</button></th>
+                                <th><button class="table-sort">Evaluations</button></th>
+                                <th><button class="table-sort">Research and Publications</button></th>
+                                <th><button class="table-sort">Professional Development</button></th>
+                                <th><button class="table-sort">Extension Services</button></th>
+                                <th><button class="table-sort">Final Score</button></th>
+                                <th><button class="table-sort">Old Faculty Rank</button></th>
+                                <th><button class="table-sort">New Faculty Rank</button></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                            <tr>
+                                <td>Alma A. Fernandez</td>
+                                <td>89.5</td>
+                                <td>100.0</td>
+                                <td>40.12</td>
+                                <td>40.12</td>
+                                <td>86.0</td>
+                                <td>Assistant Professor IV</td>
+                                <td>Associate Professor IV</td>
+                                <td>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-ranking" class="fw-medium px-1">See Report</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Leandro B. Avena III</td>
+                                <td>89.5</td>
+                                <td>100.0</td>
+                                <td>40.12</td>
+                                <td>40.12</td>
+                                <td>86.0</td>
+                                <td>Lecturer</td>
+                                <td>Not Applicable</td>
+                                <td>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-ranking" class="fw-medium px-1">See Report</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
