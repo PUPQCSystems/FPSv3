@@ -1,0 +1,47 @@
+{% comment %} Script: Average Student Rating Per Academic Year {% endcomment %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var chartDataTwo = JSON.parse('{{ ave_sr_rate|escapejs }}');
+        var categories = chartDataTwo.academic_years;
+        var semester1Data = chartDataTwo.first_semester_ratings;
+        var semester2Data = chartDataTwo.second_semester_ratings;
+        const options = {
+            chart: {
+                type: "bar",
+                height: 350,
+                toolbar: {
+                    show: false
+                },
+            },
+            series: [
+                {
+                    name: "First Semester",
+                    data: semester1Data,
+                },
+                {
+                    name: "Second Semester",
+                    data: semester2Data,
+                },
+            ],
+            xaxis: {
+                categories: categories,
+                title: {
+                    text: "Academic Year",
+                },
+            },
+            yaxis: {
+                title: {
+                    text: "Rating Score",
+                },
+                max: 5,
+            },
+            colors: [
+                tabler.getColor("info"),
+                tabler.getColor("dark"),
+                //tabler.getColor("info", 0.8)
+            ],
+        };
+        const chart = new ApexCharts(document.getElementById("studentrateChart"), options);
+        chart.render();
+    });
+</script>

@@ -1,0 +1,41 @@
+
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#student-ratings').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "{% url 'evaluations:eval_table' %}",
+                "dataSrc": "data"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },
+            "columns": [
+                { "data": "faculty"},
+                { "data": "semester"},
+                { "data": "academic_year"},
+                { "data": "student_rating"},
+                { "data": "student_interpretation"},
+            ],    
+            "columnDefs": [{ 
+                "className": "dt-body-left",
+                "targets": 0,
+            }],
+            "pageLength": 5,
+        }); 
+        
+        $('#srch-sr-1,#srch-sr-2,#srch-sr-3,#srch-sr-4,#srch-sr-5').on('keyup', function () {
+            dataTable.column($(this).parent().index() + ':visible').search(this.value).draw();
+        });
+
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } $(window).resize(recalculateResponsive);
+    });
+</script>

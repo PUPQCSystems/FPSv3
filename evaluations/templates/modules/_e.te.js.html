@@ -1,0 +1,79 @@
+
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#dummy-eval').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "{% url 'evaluations:eval_table' %}",
+                "dataSrc": "data"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },
+            "columns": [
+                { "data": "faculty"},
+                { "data": "semester"},
+                { "data": "academic_year"},
+                { "data": "average_rating"},
+                { "data": "interpretation"},
+                { "data": "performance_score"},
+                //{ "data": "student_rating", "visible": false },
+                //{ "data": "student_interpretation", "visible": false },
+                {
+                    "data": null,
+                    "render": function (data, type, full, meta) {
+
+                        const facultyName = full.faculty;
+                        const facultyScor = full.performance_score;
+                        const ave_rating = full.average_rating;
+                        const ar_interpretation = full.interpretation;
+
+                        return `<a href="#" data-bs-toggle="modal" 
+                                            data-faculty-name="${facultyName}" 
+                                            data-faculty-scr="${facultyScor}"
+                                            data-faculty-ave="${ave_rating}"
+                                            data-ave-interp="${ar_interpretation}"
+                                        data-bs-target="#modal-average">
+                                    <span class="col">See Details</span>
+                                </a>`;
+                    }
+                }
+            ],    
+            "columnDefs": [{
+                targets: [6], orderable: false,
+                "className": "dt-left" 
+            }],
+            "pageLength": 5,
+        }); 
+        
+        $('#srch-1,#srch-2,#srch-3,#srch-4,#srch-5,#srch-6,#srch-7').on('keyup', function () {
+            dataTable.column($(this).parent().index() + ':visible').search(this.value).draw();
+        });
+
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } $(window).resize(recalculateResponsive);
+    });
+</script>
+<script>
+    $('#modal-average').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var facultyName = button.data('faculty-name');
+        $('#facultyNameSpan').text(facultyName);
+        
+        var facultyScor = button.data('faculty-scr');
+        $('#facultyScrSpan').text(facultyScor);
+        
+        var ave_rating = button.data('faculty-ave');
+        $('#average_rate').text(ave_rating);
+        
+        var ar_interpretation = button.data('ave-interp');
+        $('#ave_interp').text(ar_interpretation);
+    });
+</script>

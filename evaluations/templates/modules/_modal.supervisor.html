@@ -1,0 +1,46 @@
+{% comment %} Modal: Supervisor Rating {% endcomment %}
+<div class="modal modal-blur fade" id="modal-supervisor-rating" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert-primary" role="alert">
+                    <div class="d-flex">
+                        <div>
+                            <h5 class="modal-title">Supervisor Rating Per Faculty</h5>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div style="overflow: hidden !important;">
+                    <table class="table" id="supervisor-rating">
+                        <thead>
+                            <tr>
+                                <th>Faculty Name</th>
+                                <th>Semester</th>
+                                <th>Academic Year</th>
+                                <th>Supervisor Rating</th>
+                                <th>Rating Interpretation</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Faculty Name"      id="srch-sp-1"></th>
+                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Semester"          id="srch-sp-2"></th>
+                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Academic Year"     id="srch-sp-3"></th>
+                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Supervisor Rating" id="srch-sp-4"></th>
+                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Interpretation"    id="srch-sp-5"></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

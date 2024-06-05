@@ -6,6 +6,7 @@
 
 :root, [data-bs-theme=light] {
     --tblr-primary: #880000 !important;
+    --tblr-primary-rgb: #880000 !important;
 }
 
 body, h1, h2, h3, h4, h5, h6,

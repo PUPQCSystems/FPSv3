@@ -1,0 +1,59 @@
+{% comment %} Analytics: Student and Supervisor Rating {% endcomment %}
+<div class="row row-deck row-cards">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <h3 class="col card-title mb-0 fw-bolder">Average Student Rating Per Academic Year</h3>
+                    <div class="ms-auto lh-1" style="margin-right: 1rem;">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-student-rating">
+                            <span class="col">Details</span>
+                        </a>
+                    </div>
+                    <div class="ms-auto lh-1">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter</a>
+                            <div class="dropdown-menu dropdown-menu-end" style="">
+                                <a class="dropdown-item" href="#">2019</a>
+                                <a class="dropdown-item" href="#">2020</a>
+                                <a class="dropdown-item" href="#">2021</a>
+                                <a class="dropdown-item" href="#">2022</a>
+                                <a class="dropdown-item" href="#">2023</a>
+                                <a class="dropdown-item" href="#">2024</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="studentrateChart" class="chart-lg"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <h3 class="col card-title mb-0 fw-bolder">Average Supervisor Rating Per Academic Year</h3>
+                    <div class="ms-auto lh-1" style="margin-right: 1rem;">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-supervisor-rating">
+                            <span class="col">Details</span>
+                        </a>
+                    </div>
+                    <div class="ms-auto lh-1">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter</a>
+                            <div class="dropdown-menu dropdown-menu-end" style="">
+                                <a class="dropdown-item" href="#">2019</a>
+                                <a class="dropdown-item" href="#">2020</a>
+                                <a class="dropdown-item" href="#">2021</a>
+                                <a class="dropdown-item" href="#">2022</a>
+                                <a class="dropdown-item" href="#">2023</a>
+                                <a class="dropdown-item" href="#">2024</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="supervrateChart" class="chart-lg"></div>
+            </div>
+        </div>
+    </div>
+</div>
