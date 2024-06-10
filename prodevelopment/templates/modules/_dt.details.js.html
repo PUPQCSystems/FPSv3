@@ -1,0 +1,76 @@
+{% comment %} Table: Prodev Counts {% endcomment %}
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#table-prodev').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "{% url 'prodevelopment:prodev_table' %}",
+                "dataSrc": "data"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },
+            "columns": [
+                { "data": "participants"},
+                { "data": "training"},
+                { "data": "organizer"},
+                { "data": "hours"},
+                { "data": "event_date"},
+                { "data": "scope" },
+                {
+                    "data": null,
+                    "render": function (data, type, full, meta) {
+                        const participants = full.participants;
+                        const performance_score = full.performance_score;
+                        const scope = full.scope;
+                        const hours = full.hours;
+                        return `<a href="#" data-bs-toggle="modal" 
+                                            data-participant-name="${participants}" 
+                                            data-participant-scr="${performance_score}"
+                                            data-prodev-scope="${scope}"
+                                            data-prodev-hours="${hours}"
+                                            data-bs-target="#modal-prodev-detail">
+                                    <span class="col">See Details</span>
+                                </a>`;
+                    }
+                },
+                { "data": "performance_score", "visible": false },
+            ],
+            "columnDefs": [{
+                targets: [5], orderable: false,
+                "className": "dt-left" 
+            }],
+            "pageLength": 5,
+        }); 
+        $('.search-input-dt-prodev').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
+        });
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } $(window).resize(recalculateResponsive);
+    });
+</script>
+<script>
+    $('#modal-prodev-detail').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+
+        var participantName = button.data('participant-name');
+        $('#participantNameSpan').text(participantName);
+        
+        var prodevScore = button.data('participant-scr');
+        $('#participantScorSpan').text(prodevScore);
+        
+        var prodevscope = button.data('prodev-scope');
+        $('#scopeSpan').text(prodevscope);
+        
+        var hours = button.data('prodev-hours');
+        $('#hoursSpan').text(hours);
+    });
+</script>

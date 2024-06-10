@@ -1,0 +1,34 @@
+
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#research-peryear').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "{% url 'research:research_table' %}",
+                "dataSrc": "data"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },
+            "columns": [
+                { "data": "author"},
+                { "data": "research_paper"},
+                { "data": "date_published"}
+            ],
+            "pageLength": 5,
+        }); 
+        $('.search-input-ax-peryear').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
+        });
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } $(window).resize(recalculateResponsive);
+    });
+</script>

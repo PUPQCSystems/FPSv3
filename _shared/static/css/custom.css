@@ -40,3 +40,23 @@ p, li, a, .nav-link-title {
 .modal-footer {
     background-color: white !important;
 }
+
+div.dt-container div.dt-info {
+    padding-top: .25em !important;
+}
+
+div.dt-container div.row {
+    margin-bottom: 1rem !important;
+}
+
+div.dt-container div.dt-search input {
+    border-radius: 5px !important;
+}
+.form-control-sm {
+    font-size: 0.85rem;
+    border-radius: 3px !important;
+}
+
+table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+    text-align: left !important;
+}

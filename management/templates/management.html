@@ -7,7 +7,7 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    Faculty Management
+                    Rank Reports
                 </h2>
             </div>
         </div>
@@ -15,56 +15,127 @@
 </div>
 <div class="page-body">
     <div class="container-xl">
-        {% comment %} Table: Reports {% endcomment %}
-        <div class="card ">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">List of Regular Faculties</h3>
+            </div>
             <div class="card-body">
-                <div id="table-default" class="table-responsive">
-                    <table class="table">
+                <div style="overflow: hidden !important;">
+                    <table class="table" id="reports-dt" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th><button class="table-sort">Faculty</button></th>
-                                <th><button class="table-sort">Evaluations</button></th>
-                                <th><button class="table-sort">Research and Publications</button></th>
-                                <th><button class="table-sort">Professional Development</button></th>
-                                <th><button class="table-sort">Extension Services</button></th>
-                                <th><button class="table-sort">Final Score</button></th>
-                                <th><button class="table-sort">Old Faculty Rank</button></th>
-                                <th><button class="table-sort">New Faculty Rank</button></th>
-                                <th></th>
+                                <th>Faculty</th>
+                                <th>KRA 1</th>
+                                <th>KRA 2</th>
+                                <th>KRA 3</th>
+                                <th>KRA 4</th>
+                                <th>Bracket Count</th>
+                                <th>Old Faculty Rank</th>
+                                <th>New Faculty Rank</th>
+                                <th>Impression</th>
+                                <th>Rank Evaluation Date</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="table-tbody">
-                            <tr>
-                                <td>Alma A. Fernandez</td>
-                                <td>89.5</td>
-                                <td>100.0</td>
-                                <td>40.12</td>
-                                <td>40.12</td>
-                                <td>86.0</td>
-                                <td>Assistant Professor IV</td>
-                                <td>Associate Professor IV</td>
-                                <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-ranking" class="fw-medium px-1">See Report</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Leandro B. Avena III</td>
-                                <td>89.5</td>
-                                <td>100.0</td>
-                                <td>40.12</td>
-                                <td>40.12</td>
-                                <td>86.0</td>
-                                <td>Lecturer</td>
-                                <td>Not Applicable</td>
-                                <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-ranking" class="fw-medium px-1">See Report</a>
-                                </td>
-                            </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    <input type="text" placeholder="Search Faculty" class="form-control form-control-sm search-input-ranking" data-column="0">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="KRA 1" class="form-control form-control-sm search-input-ranking" data-column="1">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="KRA 2" class="form-control form-control-sm search-input-ranking" data-column="2">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="KRA 3" class="form-control form-control-sm search-input-ranking" data-column="3">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="KRA 4" class="form-control form-control-sm search-input-ranking" data-column="4">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search Bracket Count" class="form-control form-control-sm search-input-ranking" data-column="5">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search Old Rank" class="form-control form-control-sm search-input-ranking" data-column="6">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search New Rank" class="form-control form-control-sm search-input-ranking" data-column="7">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search Impression" class="form-control form-control-sm search-input-ranking" data-column="8">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search Date" class="form-control form-control-sm search-input-ranking" data-column="9">
+                                </th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#reports-dt').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },   
+            "columnDefs": [{
+                targets: [5],
+                className: "dt-center" 
+            }], 
+            "ajax": {
+                "url": "{% url 'management:get_reports' %}",
+                "dataSrc": "data"
+            },
+            "columns": [
+                { "data": "faculty_name"},
+                { "data": "evaluations"},
+                { "data": "researchpapers"},
+                { "data": "prodev"},
+                { "data": "extension"},
+                { "data": "bracketcount"},
+                { "data": "oldrank"},
+                { "data": "newrank"},
+                { "data": "assessment"},
+                { "data": "evaldate"},
+                {
+                    "data": null,
+                    "render": function (data, type, full, meta) {
+                        const faculty = full.faculty_name;
+                        return `<a href="#" class="fw-bolder "
+                                            data-bs-toggle="modal" 
+                                            data-rn-faculty="${faculty}" 
+                                            data-bs-target="#modal-reports">
+                                    <span class="col">Report</span>
+                                </a>`;
+                    }
+                },
+            ],  
+        }); 
+        $('.search-input-ranking').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
+        });
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } 
+        $(window).resize(recalculateResponsive);
+    });
+</script>
 {% endblock %}

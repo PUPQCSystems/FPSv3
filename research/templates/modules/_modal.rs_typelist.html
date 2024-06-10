@@ -1,0 +1,46 @@
+{% comment %} Table Modal: Research Types {% endcomment %}
+<div class="modal modal-blur fade" id="modal-type" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert-primary" role="alert">
+                    <div class="d-flex">
+                        <div>
+                            <h5 class="modal-title">List of Faculty, Published Papers and their Type</h5>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table dt-response" id="research-typelist" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Author</th>
+                            <th>Research Title</th>
+                            <th>Research Type</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                <input type="text" placeholder="Search Author" class="form-control form-control-sm search-input-ax-types" data-column="0">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Search Title" class="form-control form-control-sm search-input-ax-types" data-column="1">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Search Type" class="form-control form-control-sm search-input-ax-types" data-column="2">
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

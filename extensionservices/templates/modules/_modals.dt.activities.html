@@ -1,0 +1,46 @@
+{% comment %} Table Modal: Extension Activities {% endcomment %}
+<div class="modal modal-blur fade" id="modal-extension" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert-primary" role="alert">
+                    <div class="d-flex">
+                        <div>
+                            <h5 class="modal-title">List of Extension Activities in PUPQC Per Year</h5>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table dt-response" id="table-extension-peryear"  style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Faculty</th>
+                            <th>Extension Activity</th>
+                            <th>Date of Activity</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                <input type="text" placeholder="Search Faculty" class="form-control form-control-sm search-input-dt-ext-peryear" data-column="0">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Search Activity" class="form-control form-control-sm search-input-dt-ext-peryear" data-column="1">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Search Date" class="form-control form-control-sm search-input-dt-ext-peryear" data-column="2">
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

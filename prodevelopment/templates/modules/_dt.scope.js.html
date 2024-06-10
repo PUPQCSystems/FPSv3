@@ -1,0 +1,38 @@
+{% comment %} JS: Event Scope {% endcomment %}
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#table-prodev-scope').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "{% url 'prodevelopment:prodev_table' %}",
+                "dataSrc": "data"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },
+            "columns": [
+                { "data": "participants"},
+                { "data": "training"},
+                { "data": "scope"},
+                { "data": "event_date"},
+            ],
+            "columnDefs": [{
+                "className": "dt-left" 
+            }],
+            "pageLength": 5,
+        }); 
+        $('.search-input-dt-prodev-events').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
+        });
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } $(window).resize(recalculateResponsive);
+    });
+</script>

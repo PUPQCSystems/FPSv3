@@ -1,0 +1,54 @@
+{% comment %} Analytics Js: Prodev Per Year {% endcomment %}
+<script>
+    var participantsPerYearData = JSON.parse('{{ participants_per_year|safe }}');
+
+    var years = participantsPerYearData.map(function(entry) {
+        return entry.year;
+    });
+
+    var totalEvents = participantsPerYearData.map(function(entry) {
+        return entry.total_events;
+    });
+
+    var options = {
+        chart: {
+            type: "line",
+            height: 350,
+            toolbar: {
+                show: false
+            },
+        },
+        series: [
+            {
+                name: "No. of Conference, Training, etc.",
+                data: totalEvents,
+            },
+        ],
+        xaxis: {
+            categories: years,
+            title: {
+                text: "Year",
+            },
+        },
+        yaxis: {
+            title: {
+                text: "Conference, Trainings, etc.",
+            },
+            max: Math.max.apply(Math, totalEvents) + 10,
+            min: 0,
+            max:100,
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 3,
+            dashArray: 0,
+        },
+        colors: ['#4299e1'],
+    };
+
+    var chart = new ApexCharts(document.getElementById("participationCharts"), options);
+    chart.render();
+</script>

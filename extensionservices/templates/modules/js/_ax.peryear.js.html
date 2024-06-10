@@ -1,0 +1,54 @@
+{% comment %} Analytics Js: Extension Per Year {% endcomment %}
+<script>
+    var participantsPerYearData = JSON.parse('{{ extension_counts|safe }}');
+
+    var years = participantsPerYearData.map(function(entry) {
+        return entry.year;
+    });
+
+    var totalEvents = participantsPerYearData.map(function(entry) {
+        return entry.total_events;
+    });
+
+    var options = {
+        chart: {
+            type: "line",
+            height: 350,
+            toolbar: {
+                show: false
+            },
+        },
+        series: [
+            {
+                name: "No. of Extension Activities",
+                data: totalEvents,
+            },
+        ],
+        xaxis: {
+            categories: years,
+            title: {
+                text: "Year",
+            },
+        },
+        yaxis: {
+            title: {
+                text: "Extension Activities",
+            },
+            max: Math.max.apply(Math, totalEvents) + 10,
+            min: 0,
+            max:50,
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 3,
+            dashArray: 0,
+        },
+        colors: ['#4299e1'],
+    };
+
+    var chart = new ApexCharts(document.getElementById("extensionCountsChart"), options);
+    chart.render();
+</script>

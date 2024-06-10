@@ -15,438 +15,355 @@
 </div>
 <div class="page-body">
     <div class="container-xl">
-        {% comment %} Analytics Modal: Ranking {% endcomment %}
-        <div class="modal modal-blur fade" id="modal-ranking-analytics" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="min-width: 1080px !important;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="alert-primary" role="alert">
-                            <div class="d-flex">
-                                <div>
-                                    <h5 class="modal-title">Faculty Score Points</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="table-default" class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th><button class="table-sort">Faculty</button></th>
-                                        <th><button class="table-sort">Teaching Effectiveness</button></th>
-                                        <th><button class="table-sort">Research Outputs</button></th>
-                                        <th><button class="table-sort">Professional Development</button></th>
-                                        <th><button class="table-sort">Extension Services</button></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-tbody">
-                                    <tr>
-                                        <td>Alma A. Fernandez</td>
-                                        <td>89.5</td>
-                                        <td>100.0</td>
-                                        <td>40.12</td>
-                                        <td>40.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Leandro B. Avena III</td>
-                                        <td>70.5</td>
-                                        <td>100.0</td>
-                                        <td>40.12</td>
-                                        <td>40.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Christian O. Balatbat</td>
-                                        <td>69.5</td>
-                                        <td>100.0</td>
-                                        <td>40.12</td>
-                                        <td>40.12</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         {% comment %} Details Modal: Details Ranking {% endcomment %}
         <div class="modal modal-blur fade" id="modal-ranking" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="alert-primary" role="alert">
-                            <div class="d-flex">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <form id="rankForm" method="post" action="{% url 'ranking:edit_rank_evaluation' %}">
+                    {% csrf_token %}
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="alert-primary" role="alert">
+                                <div class="d-flex">
+                                    <div>
+                                        <h5 class="modal-title">Faculty Ranking Evaluation/Computation</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="py-1">
                                 <div>
-                                    <h5 class="modal-title">Faculty Ranking Evaluation</h5>
+                                    <p class=" text-muted">
+                                        <span class="fw-bolder">
+                                            This part shows how a faculty member's total points determine their rank progression through sub-rank increments.<br/><br/>
+                                            For example, a score of 85 points falls in the 81-90 bracket, leading to 5 sub-rank increments, and thus advancing a faculty member from Associate Professor V to Professor V.
+                                        </span>
+                                        <br/><br/>
+                                        <span class="text-red">*</span>
+                                        <span class="fw-bolder">
+                                            <span class="text-dark">Note: </span>
+                                            This ranking evaluation is applicable in Regular Raculty only.
+                                        </span>
+                                    </p>
+                                    <div class="row d-flex justify-content-center align-items-center">
+                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                            <li>Score Bracket</li><br/>
+                                            <li class="mb-2">41 - 50</li>
+                                            <li class="mb-2">51 - 60</li>
+                                            <li class="mb-2">61 - 70</li>
+                                            <li class="mb-2">71 - 80</li>
+                                            <li class="mb-2">81 - 90</li>
+                                            <li class="mb-2">91 - 100</li>
+                                        </ul>
+                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                            <li>No. of Sub-rank Increment</li><br/>
+                                            <li class="mb-2"><span>: 1 sub rank</li>
+                                            <li class="mb-2"><span>: 2 sub rank</li>
+                                            <li class="mb-2"><span>: 3 sub rank</li>
+                                            <li class="mb-2"><span>: 4 sub rank</li>
+                                            <li class="mb-2"><span>: 5 sub rank</li>
+                                            <li class="mb-2"><span>: 6 sub rank</li>
+                                        </ul>
+                                    </div>
+                                    <div class="row py-2">
+                                        <div class="col-auto">
+                                            <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+                                        </div>
+                                        <h4 class="col-auto col-auto">Final Reclassified Faculty Rank:</h4>
+                                        <span class="col-auto col-auto text-blue fw-bolder" id="newRankSpan">No info in database</span>
+                                    </div>
+                                    <div class="row py-2">
+                                        <div class="col-auto">
+                                            <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+                                        </div>
+                                        <h4 class="col-auto col-auto">Impression:</h4>
+                                        <span class="col-auto col-auto text-blue fw-bolder" id="impressionSpan">No info in database</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="py-1">
+                            <div class="py-1">
+                                <div class="row">
+                                    <div class="accordion p-0" id="accordionExample">
+                                        <div class="accordion-item" style="border: 0px !important;">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button p-2 collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    Metrics
+                                                </button>
+                                            </h2>
+                                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body text-muted" style="margin-left: 1vw;">
+                                                    <div class="row">
+                                                        <h4 class="col-auto col-lg-6">Faculty Name: </h4>
+                                                        <span class="col-auto col-lg-6" id="facultyNameSpan">No info in database</span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <h4 class="col-auto col-lg-6">Current Faculty Rank: </h4>
+                                                        <span class="col-auto col-lg-6" id="currentRankSpan">No info in database</span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <h4 class="col-auto col-lg-6">Qualified for Auto. +1 (for PhD): </h4>
+                                                        <span class="col-auto col-lg-6">No</span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <h4 class="col-auto col-lg-6">No. of Sub-Rank Increment based on Reclassified Rank: </h4>
+                                                        <span class="col-auto col-lg-6" id="rankIncrementSpan">No info in database</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <div class="row">
+                                    <div class="accordion p-0" id="accordionExample">
+                                        <div class="accordion-item" style="border: 0px !important;">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button p-2 collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    Computations
+                                                </button>
+                                            </h2>
+                                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <div class="py-2">
+                                                        <p class="py-1 text-muted">
+                                                            <span class="fw-bolder">
+                                                                This shows the total points a faculty member that can earn based on their scores and the weighted importance of different Key Result Areas (KRAs). It demonstrates how these points determine the faculty rank, ranging from Instructor to College/University Professor.
+                                                                <br/><br/><br/>
+                                                                How to interpret this:
+                                                            </span>
+                                                            <ul class="list-unstyled text-muted col-md-12 col-auto" style="padding: 0rem 2rem;">
+                                                                <li>1. The weights of each Key Area change based on the rank, emphasizing different aspects of faculty performance for different ranks.</li><br/>
+                                                                <li>2. The faculty's score in each is multiplied by the corresponding weight(percentage) to calculate the points for that Key Area.</li><br/>
+                                                                <li>3. The total points are the sum of points from all KRA.</li><br/>
+                                                                <li>4. These total points determine the faculty rank, where higher points indicate a higher faculty rank.</li><br/>
+                                                            </ul>
+                                                            <span class="text-muted fw-bolder">General Weighted KRA Points computation explained below:</span>
+                                                            <br/><br/>
+                                                            <ul class="list-unstyled text-muted col-md-12 col-auto mt-3" style="padding: 0rem 2rem;">
+                                                                <li>a. KRA 1 (Teaching Evaluation) involve 2 semester of current academic year and getting average performance score from it.</li><br/>
+                                                                <li>b. KRA 2 (Research Published) involve count of published papers with corresponding score and getting average performance score from it.</li><br/>
+                                                                <li>c. KRA 3 (Professional Development Participation) and 4 (Extension Service Participation) involve count of participated conference, training, seminar, etc. with corresponding score and getting average performance score from it.</li><br/>
+                                                            </ul>
+                                                            <div class="row">
+                                                                <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                                    <!--li>a. for Instructor (I-III)</li!-->
+                                                                    <p class="text-muted">
+                                                                        <div class="row">
+                                                                            <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                                                <li class="mb-3">Teaching Effectiveness:</li>
+                                                                                <li class="mb-3">Research Outputs:</li>
+                                                                                <li class="mb-3">Extension Services:</li>
+                                                                                <li class="mb-3">Continuing Development:</li>
+                                                                            </ul>
+                                                                            <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                                                <li class="mb-3"><!--span>: 60% = </span!--> <span id="kra1Span">00.0</span> points</li>
+                                                                                <li class="mb-3"><!--span>: 10% = </span!--> <span id="kra2Span">00.0</span> points</li>
+                                                                                <li class="mb-3"><!--span>: 20% = </span!--> <span id="kra3Span">00.0</span> points</li>
+                                                                                <li class="mb-3"><!--span>: 10% = </span!--> <span id="kra4Span">00.0</span> points</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </p>
+                                                                    <div class="row">
+                                                                        <div class="col-auto">
+                                                                            <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+                                                                        </div>
+                                                                        <h4 class="col-auto text-dark">Computed Score Bracket: </h4>
+                                                                        <span class="col-auto" id="totalPointsSpan">0</span>
+                                                                    </div>
+                                                                </ul>
+                                                            </div>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div>
-                                <p class=" text-muted">
-                                    This part shows how a faculty member's total points determine their rank progression through sub-rank increments. For example, a score of 85 points falls in the 81-90 bracket, leading to 5 sub-rank increments, and thus advancing a faculty member from Associate Professor V to Professor V.
-                                </p>
-                                <div class="row d-flex justify-content-center align-items-center">
-                                    <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                        <li>Score Bracket</li><br/>
-                                        <li>41 - 50</li>
-                                        <li>51 - 60</li>
-                                        <li>61 - 70</li>
-                                        <li>71 - 80</li>
-                                        <li>81 - 90</li>
-                                        <li>91 - 100</li>
-                                    </ul>
-                                    <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                        <li>No. of Sub-rank Increment</li><br/>
-                                        <li><span>: 1 sub rank</li>
-                                        <li><span>: 2 sub rank</li>
-                                        <li><span>: 3 sub rank</li>
-                                        <li><span>: 4 sub rank</li>
-                                        <li><span>: 5 sub rank</li>
-                                        <li><span>: 6 sub rank</li>
-                                    </ul>
-                                </div>
-                                <div class="row py-2">
-                                    <div class="col-auto">
-                                        <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
-                                    </div>
-                                    <h4 class="col-auto col-auto">Final Recommended Faculty Rank:</h4>
-                                    <span class="col-auto col-auto text-blue">Associate Professor IV</span>
-                                </div>
-                                <div class="row py-2">
-                                    <div class="col-auto">
-                                        <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
-                                    </div>
-                                    <h4 class="col-auto col-auto">Impression:</h4>
-                                    <span class="col-auto col-auto text-blue fw-bolder">Promoted</span>
-                                </div>
+                                <input type="hidden" name="new_rank" id="newRankInput">
+                                <input type="hidden" name="impression" id="impressionInput">
+                                <input type="hidden" name="faculty_name" id="facultyNameInput">
+                                <input type="hidden" name="current_rank" id="currentRankInput">
+                                <input type="hidden" name="rank_increment" id="rankIncrementInput">
+                                <input type="hidden" name="kra1" id="kra1Input">
+                                <input type="hidden" name="kra2" id="kra2Input">
+                                <input type="hidden" name="kra3" id="kra3Input">
+                                <input type="hidden" name="kra4" id="kra4Input">
+                                <input type="hidden" name="total_points" id="totalPointsInput">
                             </div>
                         </div>
-                        <div class="py-1">
-                            <div class="row">
-                                <div class="accordion p-0" id="accordionExample">
-                                    <div class="accordion-item" style="border: 0px !important;">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button p-2 collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                Metrics
-                                            </button>
-                                        </h2>
-                                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body text-muted">
-                                                <div class="row">
-                                                    <h4 class="col-auto col-lg-6">Faculty Name:</h4>
-                                                    <span class="col-auto col-lg-6">: Alma A. Fernandez</span>
-                                                </div>
-                                                <div class="row">
-                                                    <h4 class="col-auto col-lg-6">Current Faculty Rank:</h4>
-                                                    <span class="col-auto col-lg-6">: Assistant Professor IV</span>
-                                                </div>
-                                                <div class="row">
-                                                    <h4 class="col-auto col-lg-6">Qualified for Auto. +1 (for PhD):</h4>
-                                                    <span class="col-auto col-lg-6">: No</span>
-                                                </div>
-                                                <div class="row">
-                                                    <h4 class="col-auto col-lg-6">Base Rank:</h4>
-                                                    <span class="col-auto col-lg-6">: Assistant Professor IV</span>
-                                                </div>
-                                                <div class="row">
-                                                    <h4 class="col-auto col-lg-6">No. of Sub-Rank Increment based on Base Rank:</h4>
-                                                    <span class="col-auto col-lg-6">: 5</span>
-                                                </div>
-                                                <div class="row">
-                                                    <h4 class="col-auto col-lg-6">Initial Reclassified Rank (first computation):</h4>
-                                                    <span class="col-auto col-lg-6">: Associate Professor IV</span>
-                                                </div>
-                                                <div class="row">
-                                                    <h4 class="col-auto col-lg-6">No. of Sub-Rank Increment based on Reclassified Rank:</h4>
-                                                    <span class="col-auto col-lg-6">: 5</span>
-                                                </div>
-                                                <div class="row">
-                                                    <h4 class="col-auto col-lg-6">Reclassified Rank (recomputation):</h4>
-                                                    <span class="col-auto col-lg-6">: Associate Professor IV</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="py-1">
-                            <div class="row">
-                                <div class="accordion p-0" id="accordionExample">
-                                    <div class="accordion-item" style="border: 0px !important;">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button p-2 collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                Computations
-                                            </button>
-                                        </h2>
-                                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                <div class="py-2">
-                                                    <p class="py-1 text-muted">
-                                                        This table shows the total points a faculty member can earn based on their scores and the weighted importance of different Key Result Areas (KRAs). It demonstrates how these points determine the faculty rank, ranging from Instructor to College/University Professor.
-                                                        <br/><br/>How to interpret this table:
-                                                        <ul class="list-unstyled text-muted col-md-12 col-auto" style="margin-left: 0.5rem;">
-                                                            <li>1. The weights of each KRA change based on the rank, emphasizing different aspects of faculty performance for different ranks.</li><br/>
-                                                            <li>2. The faculty's score in each KRA is multiplied by the corresponding weight to calculate the points for that KRA.</li><br/>
-                                                            <li>3. The total points are the sum of points from all KRAs.</li><br/>
-                                                            <li>4. These total points determine the faculty rank, where higher points indicate a higher faculty rank.</li><br/>
-                                                        </ul>
-                                                        <div class="row">
-                                                            {% comment %} Instructor {% endcomment %}
-                                                            <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                <li>a. for Instructor (I-III)</li>
-                                                                <p class="text-muted">
-                                                                    <div class="row">
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li>Teaching Effectiveness</li>
-                                                                            <li>Research Outputs</li>
-                                                                            <li>Extension Services</li>
-                                                                            <li>Continuing Development</li>
-                                                                        </ul>
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li><span>: 60% = </span> <u>00.0</u></li>
-                                                                            <li><span>: 10% = </span> <u>00.0</u></li>
-                                                                            <li><span>: 20% = </span> <u>00.0</u></li>
-                                                                            <li><span>: 10% = </span> <u>00.0</u></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </p>
-                                                                <div class="row">
-                                                                    <div class="col-auto">
-                                                                        <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
-                                                                    </div>
-                                                                    <h4 class="col-auto text-dark">Total Points:</h4>
-                                                                    <span class="col-auto">84</span>
-                                                                </div>
-                                                            </ul>
-                                                            {% comment %} Assistant Professor {% endcomment %}
-                                                            <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                <li>b. for Assistant Professor (I-IV)</li>
-                                                                <p class="text-muted">
-                                                                    <div class="row">
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li>Teaching Effectiveness</li>
-                                                                            <li>Research Outputs</li>
-                                                                            <li>Extension Services</li>
-                                                                            <li>Continuing Development</li>
-                                                                        </ul>
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li><span>: 50%</span> <u>00.0</u></li>
-                                                                            <li><span>: 20%</span> <u>00.0</u></li>
-                                                                            <li><span>: 20%</span> <u>00.0</u></li>
-                                                                            <li><span>: 10%</span> <u>00.0</u></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </p>
-                                                                <div class="row">
-                                                                    <div class="col-auto">
-                                                                        <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
-                                                                    </div>
-                                                                    <h4 class="col-auto text-dark">Total Points:</h4>
-                                                                    <span class="col-auto">85</span>
-                                                                </div>
-                                                            </ul>
-                                                            {% comment %} Associate Professor {% endcomment %}
-                                                            <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                <li>c. for Associate Professor (I-V)</li>
-                                                                <p class="text-muted">
-                                                                    <div class="row">
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li>Teaching Effectiveness</li>
-                                                                            <li>Research Outputs</li>
-                                                                            <li>Extension Services</li>
-                                                                            <li>Continuing Development</li>
-                                                                        </ul>
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li><span>: 40% = </span><u>35.8</u></li>
-                                                                            <li><span>: 30% = </span><u>30.0</u></li>
-                                                                            <li><span>: 20% = </span><u>8.02</u></li>
-                                                                            <li><span>: 10% = </span><u>4.01</u></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </p>
-                                                                <div class="row">
-                                                                    <div class="col-auto">
-                                                                        <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
-                                                                    </div>
-                                                                    <h4 class="col-auto text-dark">Total Points:</h4>
-                                                                    <span class="col-auto">86</span>
-                                                                </div>
-                                                            </ul>
-                                                            {% comment %} Professor {% endcomment %}
-                                                            <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                <li>d. for Professor (I-IV)</li>
-                                                                <p class="text-muted">
-                                                                    <div class="row">
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li>Teaching Effectiveness</li>
-                                                                            <li>Research Outputs</li>
-                                                                            <li>Extension Services</li>
-                                                                            <li>Continuing Development</li>
-                                                                        </ul>
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li><span>: 30% = </span> <u>00.0</u></li>
-                                                                            <li><span>: 40% = </span> <u>00.0</u></li>
-                                                                            <li><span>: 20% = </span> <u>00.0</u></li>
-                                                                            <li><span>: 10% = </span> <u>00.0</u></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </p>
-                                                                <div class="row">
-                                                                    <div class="col-auto">
-                                                                        <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
-                                                                    </div>
-                                                                    <h4 class="col-auto text-dark">Total Points:</h4>
-                                                                    <span class="col-auto">87</span>
-                                                                </div>
-                                                            </ul>
-                                                            {% comment %} University Professor {% endcomment %}
-                                                            <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                <li>e. for University Professor</li>
-                                                                <p class="text-muted">
-                                                                    <div class="row">
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li>Teaching Effectiveness</li>
-                                                                            <li>Research Outputs</li>
-                                                                            <li>Extension Services</li>
-                                                                            <li>Continuing Development</li>
-                                                                        </ul>
-                                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
-                                                                            <li><span>: 20% = </span> <u>00.0</u></li>
-                                                                            <li><span>: 50% = </span> <u>00.0</u></li>
-                                                                            <li><span>: 20% = </span> <u>00.0</u></li>
-                                                                            <li><span>: 10% = </span> <u>00.0</u></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </p>
-                                                                <div class="row">
-                                                                    <div class="col-auto">
-                                                                        <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
-                                                                    </div>
-                                                                    <h4 class="col-auto text-dark">Total Points:</h4>
-                                                                    <span class="col-auto">88</span>
-                                                                </div>
-                                                            </ul>
-                                                        </div>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="submitNewRankinfos">Confirm Reclassified Faculty Rank</button>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
-        {% comment %} Analytics: Average Ranking {% endcomment %}
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <h3 class="col card-title mb-0 fw-bolder">Average Performance by Key Result Areas</h3>
-                        <div class="ms-auto lh-1">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-ranking-analytics">
-                                <span class="col">View</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div id="facultyRankingCharts" class="chart-lg"></div>
-                </div>
-            </div>
-        </div>
+
         {% comment %} Table 1: Metrics for Faculty Rank {% endcomment %}
-        <div class="card mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">List of Regular Faculties</h3>
+            </div>
             <div class="card-body">
-                <div id="table-default" class="table-responsive">
-                    <table class="table">
+                <div style="overflow: hidden !important;">
+                    <table class="table" id="ranking-dt" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th><button class="table-sort">Faculty</button></th>
-                                <th><button class="table-sort">Faculty Type</button></th>
-                                <th><button class="table-sort">Current Faculty Rank</button></th>
-                                <th><button class="table-sort">New Faculty Rank</button></th>
-                                <th></th>
+                                <th>Faculty</th>
+                                <th>Current Faculty Rank</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                    <tbody class="table-tbody">
-                        <tr>
-                            <td>Alma A. Fernandez</td>
-                            <td>Regular Faculty</td>
-                            <td>Assistant Professor IV</td>
-                            <td>Assistant Professor IV</td>
-                            <td>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-ranking" class="fw-medium px-1">See Details</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Leandro B. Avena III</td>
-                            <td>Part-time Faculty</td>
-                            <td>Lecturer</td>
-                            <td>Not Applicable</td>
-                            <td>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-ranking" class="fw-medium px-1">See Details</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Christian O. Balatbat</td>
-                            <td>Part-time Faculty</td>
-                            <td>Lecturer</td>
-                            <td>Not Applicable</td>
-                            <td>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-ranking" class="fw-medium px-1">See Details</a>
-                            </td>
-                        </tr>
-                    </tbody>
+                        <tbody class="table-tbody">
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    <input type="text" placeholder="Search Faculty" class="form-control form-control-sm search-input-ranking" data-column="0">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search Rank" class="form-control form-control-sm search-input-ranking" data-column="1">
+                                </th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="https://preview.tabler.io/dist/libs/apexcharts/dist/apexcharts.min.js?1695847769"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% comment %} GET: Display Faculty Table (Regular Faculties) {% endcomment %}
 <script>
-    var options = {
-        chart: {
-            type: "bar",
-            height: 350,
-            toolbar: {
-                show: false
+    $(document).ready(function() {
+        var dataTable = $('#ranking-dt').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },   
+            "columnDefs": [{
+                targets: [2], orderable: false,
+                "className": "dt-center" 
+            }], 
+            "ajax": {
+                "url": "{% url 'ranking:ranking_table' %}",
+                "dataSrc": "data"
             },
-        },
-        series: [
-            {
-                name: "Average Scores",
-                data: [56.23, 74.1, 69.43, 83.01],
-            },
-        ],
-        xaxis: {
-            categories: ["Teaching Effectiveness", "Research Outputs", "Continuing Development", "Extension Services"],
-            title: {
-                text: "Key Result Area",
-            },
-        },
-        yaxis: {
-            title: {
-                text: "Scores",
-            },
-            max: 100.00,
-            min: 0.00,
-        },
-    };
-    var chart = new ApexCharts(document.getElementById("facultyRankingCharts"), options);
-    chart.render();
+            "columns": [
+                { "data": "faculty_name"},
+                { "data": "faculty_rank"},
+                {
+                    "data": null,
+                    "render": function (data, type, full, meta) {
+                        const faculty = full.faculty_name;
+                        return `<a href="#" data-bs-toggle="modal" 
+                                            data-rn-faculty="${faculty}" 
+                                            data-bs-target="#modal-ranking">
+                                    <span class="col">Reclassify Rank</span>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="#" class="text-green disabled" style="cursor: no-drop;" >
+                                    <span class="col">View Details</span>
+                                </a>`;
+                    }
+                },
+            ],  
+        }); 
+        $('.search-input-ranking').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
+        });
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } 
+        $(window).resize(recalculateResponsive);
+    });
 </script>
+
+{% comment %} GET: Reclassify Current Rank {% endcomment %}
+<script>
+    $('#modal-ranking').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var facultyName = button.data('rn-faculty');
+        //$('#facultyNameSpan').text(facultyName);
+
+        $.ajax({
+            type: "POST",
+            url: "{% url 'ranking:post_faculty_rank' %}",
+            data: {
+                'faculty_name': facultyName,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if(response.status === 'success') {
+                    //console.log('POST request was successful.');
+                    //console.log(response);
+                    $.ajax({
+                        type: "POST",
+                        url: "{% url 'ranking:get_faculty_rank' %}",
+                        data: {
+                            'faculty_name': response.faculty_name,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        },
+                        success: function(getResponse) {
+                            //alert('GET request was successful.');
+                            //console.log(getResponse);
+                            $('#facultyNameSpan').text(getResponse.faculty_name);
+                            $('#currentRankSpan').text(getResponse.current_faculty_rank);
+                            $('#kra1Span').text(getResponse.kra1);
+                            $('#kra2Span').text(getResponse.kra2);
+                            $('#kra3Span').text(getResponse.kra3);
+                            $('#kra4Span').text(getResponse.kra4);
+                            $('#totalPointsSpan').text(getResponse.total_points);
+                            $('#rankIncrementSpan').text(getResponse.rank_increment);
+                            $('#newRankSpan').text(getResponse.new_rank);
+                            $('#impressionSpan').text(getResponse.impression);
+                        },
+                        error: function(getError) {
+                            //console.log('An error occurred during POST request.');
+                            alert(getError);
+                        }
+                    });
+                } else {
+                    //console.log('Error in POST request.');
+                    alert(response.message);
+                }
+            },
+            error: function(error) {
+                //console.log('An error occurred.');
+                alert(error);
+            }
+        });
+    });
+</script>
+
+{% comment %} POST: Save to table (Faculty Rank) {% endcomment %}
+<script>
+    document.getElementById('submitNewRankinfos').addEventListener('click', function() {
+        document.getElementById('newRankInput').value = document.getElementById('newRankSpan').innerText;
+        document.getElementById('impressionInput').value = document.getElementById('impressionSpan').innerText;
+        document.getElementById('facultyNameInput').value = document.getElementById('facultyNameSpan').innerText;
+        document.getElementById('currentRankInput').value = document.getElementById('currentRankSpan').innerText;
+        document.getElementById('rankIncrementInput').value = document.getElementById('rankIncrementSpan').innerText;
+        document.getElementById('kra1Input').value = document.getElementById('kra1Span').innerText;
+        document.getElementById('kra2Input').value = document.getElementById('kra2Span').innerText;
+        document.getElementById('kra3Input').value = document.getElementById('kra3Span').innerText;
+        document.getElementById('kra4Input').value = document.getElementById('kra4Span').innerText;
+        document.getElementById('totalPointsInput').value = document.getElementById('totalPointsSpan').innerText;
+    });
+</script>
+
 {% endblock %}

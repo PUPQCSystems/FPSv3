@@ -1,0 +1,67 @@
+{% comment %} Analytics Js: Extension Role {% endcomment %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var forHeadRoles = JSON.parse('{{ head_counts|safe }}');
+        var forParticipantRoles = JSON.parse('{{ participant_counts|safe }}');
+
+        window.ApexCharts && (new ApexCharts(document.getElementById('participantRoleChart'), {
+            chart: {
+                type: "pie",
+                fontFamily: 'inherit',
+                height: 370,
+                sparkline: {
+                    enabled: true
+                },
+                animations: {
+                    enabled: true
+                },
+            },
+            fill: {
+                opacity: 1,
+            },
+            series: [forHeadRoles, forParticipantRoles], // Use the counts parsed from JSON
+            labels: ["Head", "Participant"],
+            dataLabels: {
+                enabled: true,
+                formatter: function (val, opts) {
+                    return val.toFixed(1) + "%";
+                },
+                style: {
+                    fontSize: '14px',
+                    fontFamily: 'inherit',
+                    colors: ["#fff"]
+                },
+                dropShadow: {
+                    enabled: false,
+                }
+            },
+            tooltip: {
+                theme: 'dark'
+            },
+            grid: {
+                strokeDashArray: 4,
+            },
+            colors: [
+                tabler.getColor("info"),
+                tabler.getColor("info", 0.4)
+            ],
+            legend: {
+                show: true,
+                position: 'bottom',
+                offsetY: 12,
+                markers: {
+                    width: 10,
+                    height: 10,
+                    radius: 100,
+                },
+                itemMargin: {
+                    horizontal: 8,
+                    vertical: 8
+                },
+            },
+            tooltip: {
+                fillSeriesColor: false
+            },
+        })).render();
+    });
+</script>

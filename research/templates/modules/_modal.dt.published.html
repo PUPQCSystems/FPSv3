@@ -1,0 +1,46 @@
+{% comment %} Modal: Published Counts {% endcomment %}
+<div class="modal modal-blur fade" id="modal-count-research" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert-primary" role="alert">
+                    <div class="d-flex">
+                        <div>
+                            <h5 class="modal-title">Published Research Papers This Year</h5>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table dt-response" id="research-thisyear" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Author</th>
+                            <th>Research Title</th>
+                            <th>Date Published</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                <input type="text" placeholder="Search Author" class="form-control form-control-sm search-input-dt-research-done" data-column="0">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Search Title" class="form-control form-control-sm search-input-dt-research-done" data-column="1">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Search Date" class="form-control form-control-sm search-input-dt-research-done" data-column="2">
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

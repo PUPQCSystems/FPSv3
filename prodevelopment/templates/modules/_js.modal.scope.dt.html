@@ -1,0 +1,50 @@
+{% comment %} Table Modal: Event Scope {% endcomment %}
+<div class="modal modal-blur fade" id="modal-scope" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert-primary" role="alert">
+                    <div class="d-flex">
+                        <div>
+                            <h5 class="modal-title">List of Faculties, Professional Events and its Scopes</h5>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table dt-response" id="table-prodev-scope"  style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Participant</th>
+                            <th>Conference/Training</th>
+                            <th>Scope</th>
+                            <th>Date of Activity</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                <input type="text" placeholder="Search Participant" class="form-control form-control-sm search-input-dt-prodev-scope" data-column="0">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Search Conference" class="form-control form-control-sm search-input-dt-prodev-scope" data-column="1">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Search Date" class="form-control form-control-sm search-input-dt-prodev-scope" data-column="2">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Search Date" class="form-control form-control-sm search-input-dt-prodev-scope" data-column="4">
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+        </div>

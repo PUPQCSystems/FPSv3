@@ -6,7 +6,7 @@
                 <div class="alert-primary" role="alert">
                     <div class="d-flex">
                         <div>
-                            <h5 class="modal-title">Student Rating Per Faculty</h5>
+                            <h5 class="modal-title">List of Average Student Rating Per Faculty</h5>
                         </div>
                     </div>
                 </div>
@@ -14,7 +14,7 @@
             </div>
             <div class="modal-body">
                 <div style="overflow: hidden !important;">
-                    <table class="table" id="student-ratings">
+                    <table class="table" id="student-ratings" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>Faculty Name</th>
@@ -28,11 +28,21 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Faculty Name"      id="srch-sr-1"></th>
-                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Semester"          id="srch-sr-2"></th>
-                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Academic Year"     id="srch-sr-3"></th>
-                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Student Rating"    id="srch-sr-4"></th>
-                                <th><input type="text" class="form-control form-control-sm" placeholder="Search by Interpretation"    id="srch-sr-5"></th>
+                                <th>
+                                    <input type="text" placeholder="Search Faculty" class="form-control form-control-sm search-input-st" data-column="0">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search Semester" class="form-control form-control-sm search-input-st" data-column="1">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search Year" class="form-control form-control-sm search-input-st" data-column="2">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search Rating" class="form-control form-control-sm search-input-st" data-column="3">
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Search Interpretation" class="form-control form-control-sm search-input-st" data-column="4">
+                                </th>
                             </tr>
                         </tfoot>
                     </table>

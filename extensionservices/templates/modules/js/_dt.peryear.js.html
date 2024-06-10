@@ -1,0 +1,37 @@
+{% comment %} JS - Datatable: Extension Per Year {% endcomment %}
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#table-extension-peryear').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "{% url 'extension:extension_table' %}",
+                "dataSrc": "data"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },
+            "columns": [
+                { "data": "participants"},
+                { "data": "activity"},
+                { "data": "date"},
+            ],
+            "columnDefs": [{
+                "className": "dt-left" 
+            }],
+            "pageLength": 5,
+        }); 
+        $('.search-input-dt-ext-peryear').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
+        });
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } $(window).resize(recalculateResponsive);
+    });
+</script>

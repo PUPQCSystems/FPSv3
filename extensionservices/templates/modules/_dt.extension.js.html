@@ -1,0 +1,99 @@
+{% comment %} Detail Modal: Extensions Based {% endcomment %}
+<div class="modal modal-blur fade" id="modal-extension-detail" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert-primary" role="alert">
+                    <div class="d-flex">
+                        <div>
+                            <h5 class="modal-title">Extension Services Performance</h5>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="py-2">
+                    <div class="row">
+                        <h4 class="col-auto col-lg-6">Faculty Name:</h4>
+                        <span id="extensionNameSpan" class="col-auto col-lg-6">Not Available</span>
+                    </div>
+                    <div class="row">
+                        <h4 class="col-auto col-md-6">Performance Score:</h4>
+                        <div class="col-auto col-md-6">
+                            <span id="extScorSpan" class="col-auto">0</span><span> points</span>
+                        </div>
+                    </div>
+                </div>                        
+                <div class="py-2">
+                    <div class="row">
+                        <div class="accordion p-0" id="accordionExample">
+                            <div class="accordion-item" style="border: 0px !important;">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button p-2 collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Metrics
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="py-2">
+                                            <p class="py-1 text-muted">
+                                                The formula calculates the points for every participation in every service-oriented project in the community participated, including advocacy initiatives based on the role specified. The points are assigned as follows:
+                                                <p class="text-muted">
+                                                    <div class="row">
+                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                            <li>Head</li>
+                                                            <li>Participant</li>
+                                                        </ul>
+                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                            <li><span>: 5 points</span></li>
+                                                            <li><span>: 2 points</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </p>
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+                                                </div>
+                                                <h4 class="col-auto">Role:</h4>
+                                                <span id="roleSpan" class="col-auto">N/A</span>
+                                            </div>
+                                        </div>
+                                        <div class="py-2">
+                                            <p class="py-1 text-muted">
+                                                The formula calculates the points for every participation in conference, training, workshops, and seminars based on the hours accumulated. The points are assigned as follows:
+                                                <p class="text-muted">
+                                                    <div class="row">
+                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                            <li>Spent 32 Hours and Below</li>
+                                                            <li>Spent Above 32 Hours</li>
+                                                        </ul>
+                                                        <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
+                                                            <li><span>: 2 point</span></li>
+                                                            <li><span>: 3 points</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </p>
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+                                                </div>
+                                                <h4 class="col-auto">Hours:</h4>
+                                                <span id="hoursSpan" class="col-auto">0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

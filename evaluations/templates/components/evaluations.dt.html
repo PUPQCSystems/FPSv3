@@ -5,15 +5,15 @@
     </div>
     <div class="card-body">
         <div style="overflow: hidden !important;">
-            <table class="table" id="dummy-eval">
+            <table class="table" id="evaluations-dt" style="width: 100%;">
                 <thead>
                     <tr>
                         <th>Faculty</th>
-                        <th>Semester</th>
-                        <th>Academic Year</th>
-                        <th>Average Rating</th>
-                        <th>Interpretation</th>
+                        <th>Average Student Rating</th>
                         <th>Performance Score</th>
+                        <th>Average Supervisor Rating</th>
+                        <th>Performance Score</th>
+                        <th>Overall Performance Score</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -21,12 +21,24 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th><input type="text" class="form-control form-control-sm" placeholder="Search by Faculty Name"      id="srch-1"></th>
-                        <th><input type="text" class="form-control form-control-sm" placeholder="Search by Semester"          id="srch-2"></th>
-                        <th><input type="text" class="form-control form-control-sm" placeholder="Search by Academic Year"     id="srch-3"></th>
-                        <th><input type="text" class="form-control form-control-sm" placeholder="Search by Average Rating"    id="srch-4"></th>
-                        <th><input type="text" class="form-control form-control-sm" placeholder="Search by Interpretation"    id="srch-5"></th>
-                        <th><input type="text" class="form-control form-control-sm" placeholder="Search by Performance Score" id="srch-6"></th> 
+                        <th>
+                            <input type="text" placeholder="Search Faculty" class="form-control form-control-sm search-input-ave" data-column="0">
+                        </th>
+                        <th>
+                            <input type="text" placeholder="Search Average Student Rating" class="form-control form-control-sm search-input-ave" data-column="1">
+                        </th>
+                        <th>
+                            <input type="text" placeholder="Search Score" class="form-control form-control-sm search-input-ave" data-column="2">
+                        </th>
+                        <th>
+                            <input type="text" placeholder="Search Average Supervisor Rating" class="form-control form-control-sm search-input-ave" data-column="3">
+                        </th>
+                        <th>
+                            <input type="text" placeholder="Search Score" class="form-control form-control-sm search-input-ave" data-column="4">
+                        </th>
+                        <th>
+                            <input type="text" placeholder="Search Performance Score" class="form-control form-control-sm search-input-ave" data-column="5">
+                        </th>
                         <th></th>
                     </tr>
                 </tfoot>

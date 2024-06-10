@@ -1,0 +1,76 @@
+{% comment %} Table: Prodev Counts {% endcomment %}
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#table-extension').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "{% url 'extension:extension_table' %}",
+                "dataSrc": "data"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },
+            "columns": [
+                { "data": "participants"},
+                { "data": "activity"},
+                { "data": "community"},
+                { "data": "role"},
+                { "data": "date"},
+                { "data": "hours" },
+                {
+                    "data": null,
+                    "render": function (data, type, full, meta) {
+                        const participants = full.participants;
+                        const performance_score = full.performance_score;
+                        const role = full.role;
+                        const hours = full.hours;
+                        return `<a href="#" data-bs-toggle="modal" 
+                                            data-extension-name="${participants}" 
+                                            data-extension-scr="${performance_score}"
+                                            data-extension-role="${role}"
+                                            data-extension-hours="${hours}"
+                                            data-bs-target="#modal-extension-detail">
+                                    <span class="col">See Details</span>
+                                </a>`;
+                    }
+                },
+                { "data": "performance_score", "visible": false },
+            ],
+            "columnDefs": [{
+                targets: [6], orderable: false,
+                "className": "dt-left" 
+            }],
+            "pageLength": 5,
+        }); 
+        $('.search-input-dt-prodev').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
+        });
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } $(window).resize(recalculateResponsive);
+    });
+</script>
+<script>
+    $('#modal-extension-detail').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+
+        var extensionName = button.data('extension-name');
+        $('#extensionNameSpan').text(extensionName);
+        
+        var extScore = button.data('extension-scr');
+        $('#extScorSpan').text(extScore);
+        
+        var extRole = button.data('extension-role');
+        $('#roleSpan').text(extRole);
+        
+        var hours = button.data('extension-hours');
+        $('#hoursSpan').text(hours);
+    });
+</script>

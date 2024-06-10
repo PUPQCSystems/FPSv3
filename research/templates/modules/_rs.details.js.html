@@ -1,0 +1,69 @@
+
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#dummy-research').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "{% url 'research:research_table' %}",
+                "dataSrc": "data"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },
+            "columns": [
+                { "data": "author"},
+                { "data": "research_paper"},
+                { "data": "research_type"},
+                { "data": "publisher"},
+                { "data": "status"},
+                { "data": "date_published"},
+                {
+                    "data": null,
+                    "render": function (data, type, full, meta) {
+                        const author = full.author;
+                        const author_score = full.performance_score;
+                        const research_type = full.research_type;
+                        return `<a href="#" data-bs-toggle="modal" 
+                                            data-author-name="${author}" 
+                                            data-author-scr="${author_score}"
+                                            data-paper-type="${research_type}"
+                                            data-bs-target="#modal-research-detail">
+                                    <span class="col">See Details</span>
+                                </a>`;
+                    }
+                }
+            ],    
+            "columnDefs": [{
+                targets: [6], orderable: false,
+                "className": "dt-left" 
+            }],
+            "pageLength": 5,
+        }); 
+        $('.search-input-dt-research').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
+        });
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } $(window).resize(recalculateResponsive);
+    });
+</script>
+<script>
+    $('#modal-research-detail').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var authorName = button.data('author-name');
+        $('#authorNameSpan').text(authorName);
+        
+        var titleScore = button.data('author-scr');
+        $('#authorScorSpan').text(titleScore);
+        
+        var researchType = button.data('paper-type');
+        $('#authorTypeSpan').text(researchType);
+    });
+</script>

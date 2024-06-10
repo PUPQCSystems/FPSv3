@@ -29,9 +29,10 @@
             }],
             "pageLength": 5,
         }); 
-        
-        $('#srch-sr-1,#srch-sr-2,#srch-sr-3,#srch-sr-4,#srch-sr-5').on('keyup', function () {
-            dataTable.column($(this).parent().index() + ':visible').search(this.value).draw();
+
+        $('.search-input-st').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
         });
 
         function recalculateResponsive() {

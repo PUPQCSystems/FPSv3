@@ -41,7 +41,45 @@
                 tabler.getColor("dark"),
             ],
         };
-        const chart = new ApexCharts(document.getElementById("supervrateChart"), options);
-        chart.render();
+        const eval_supervisorChart = new ApexCharts(document.getElementById("supervrateChart"), options);
+        eval_supervisorChart.render();
+
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+                const selectedYearRange = event.target.getAttribute('data-supervisor-year');
+                updateChartData(selectedYearRange);
+            });
+        });
+
+        function updateChartData(academicYearRange) {
+            if (academicYearRange === "all") {
+                renderOriginalChart();
+                return;
+            }
+            const [startYear, endYear] = academicYearRange.split('-');
+            const filteredAcademicYears = spVisor.academic_years.filter(year => {
+                const [yearStart, yearEnd] = year.split('-');
+                return parseInt(yearStart) <= parseInt(startYear) && parseInt(yearEnd) >= parseInt(endYear);
+            });
+            const startIndex = spVisor.academic_years.indexOf(filteredAcademicYears[0]);
+            const endIndex = spVisor.academic_years.indexOf(filteredAcademicYears[filteredAcademicYears.length - 1]);
+            const filteredSemester1Data = spVisor.first_semester_ratings.slice(startIndex, endIndex + 1);
+            const filteredSemester2Data = spVisor.second_semester_ratings.slice(startIndex, endIndex + 1);
+            eval_supervisorChart.updateSeries([
+                { data: filteredSemester1Data },
+                { data: filteredSemester2Data }
+            ]);
+            eval_supervisorChart.updateOptions({ xaxis: { categories: filteredAcademicYears } });
+        }
+
+        function renderOriginalChart() {
+            eval_supervisorChart.updateSeries([
+                { data: spVisor.first_semester_ratings },
+                { data: spVisor.second_semester_ratings }
+            ]);
+            eval_supervisorChart.updateOptions({ xaxis: { categories: spVisor.academic_years } });
+        }
+
     });
 </script>

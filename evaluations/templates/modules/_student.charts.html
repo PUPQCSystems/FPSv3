@@ -1,10 +1,11 @@
 {% comment %} Script: Average Student Rating Per Academic Year {% endcomment %}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var chartDataTwo = JSON.parse('{{ ave_sr_rate|escapejs }}');
-        var categories = chartDataTwo.academic_years;
-        var semester1Data = chartDataTwo.first_semester_ratings;
-        var semester2Data = chartDataTwo.second_semester_ratings;
+        var evaluationsData = JSON.parse('{{ ave_sr_rate|escapejs }}');
+        var categories = evaluationsData.academic_years;
+        var semester1Data = evaluationsData.first_semester_ratings;
+        var semester2Data = evaluationsData.second_semester_ratings;
+
         const options = {
             chart: {
                 type: "bar",
@@ -38,10 +39,47 @@
             colors: [
                 tabler.getColor("info"),
                 tabler.getColor("dark"),
-                //tabler.getColor("info", 0.8)
             ],
         };
-        const chart = new ApexCharts(document.getElementById("studentrateChart"), options);
-        chart.render();
+
+        const eval_studentChart = new ApexCharts(document.getElementById("studentrateChart"), options);
+        eval_studentChart.render();
+
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+                const selectedYearRange = event.target.getAttribute('data-student-year');
+                updateChartData(selectedYearRange);
+            });
+        });
+
+        function updateChartData(academicYearRange) {
+            if (academicYearRange === "all") {
+                renderOriginalChart();
+                return;
+            }
+            const [startYear, endYear] = academicYearRange.split('-');
+            const filteredAcademicYears = evaluationsData.academic_years.filter(year => {
+                const [yearStart, yearEnd] = year.split('-');
+                return parseInt(yearStart) <= parseInt(startYear) && parseInt(yearEnd) >= parseInt(endYear);
+            });
+            const startIndex = evaluationsData.academic_years.indexOf(filteredAcademicYears[0]);
+            const endIndex = evaluationsData.academic_years.indexOf(filteredAcademicYears[filteredAcademicYears.length - 1]);
+            const filteredSemester1Data = evaluationsData.first_semester_ratings.slice(startIndex, endIndex + 1);
+            const filteredSemester2Data = evaluationsData.second_semester_ratings.slice(startIndex, endIndex + 1);
+            eval_studentChart.updateSeries([
+                { data: filteredSemester1Data },
+                { data: filteredSemester2Data }
+            ]);
+            eval_studentChart.updateOptions({ xaxis: { categories: filteredAcademicYears } });
+        }
+
+        function renderOriginalChart() {
+            eval_studentChart.updateSeries([
+                { data: evaluationsData.first_semester_ratings },
+                { data: evaluationsData.second_semester_ratings }
+            ]);
+            eval_studentChart.updateOptions({ xaxis: { categories: evaluationsData.academic_years } });
+        }
     });
 </script>

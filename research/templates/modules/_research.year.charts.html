@@ -1,0 +1,47 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var categories = JSON.parse('{{ categories|escapejs }}');
+        var seriesData = JSON.parse('{{ series|escapejs }}');
+
+        var options = {
+            chart: {
+                type: "line",
+                height: 350,
+                toolbar: {
+                    show: false
+                },
+            },
+            series: [
+                {
+                    name: "Titles Published Per Year",
+                    data: seriesData,
+                },
+            ],
+            xaxis: {
+                categories: categories,
+                title: {
+                    text: "Year",
+                },
+            },
+            yaxis: {
+                title: {
+                    text: "No. of Papers",
+                },
+                max: 50,
+                min: 0,
+            },
+            stroke: {
+                show: true,
+                curve: 'smooth',
+                lineCap: 'butt',
+                colors: undefined,
+                width: 3,
+                dashArray: 0,
+            },
+            colors: ['#4299e1'],
+        };
+
+        var chartOfResearch = new ApexCharts(document.getElementById("researchYearChart"), options);
+        chartOfResearch.render();
+    });
+</script>

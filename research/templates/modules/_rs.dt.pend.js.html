@@ -1,0 +1,47 @@
+<script>
+    $(document).ready(function() {
+        var today = new Date();
+        var currentYear = today.getFullYear();
+    
+        var dataTable = $('#research-thisyear-ongoing').DataTable({
+            "processing": true,
+            "responsive": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "{% url 'research:research_table' %}",
+                "dataSrc": "data"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "Previous",
+                    "next": "Next"
+                }
+            },
+            "columns": [
+                { "data": "author"},
+                { "data": "research_paper"},
+                { "data": "date_published"},
+                { "data": "year_published", "visible": false },
+                { "data": "status", "visible": false },
+            ],
+            "pageLength": 5,
+            "initComplete": function () {
+                this.api().columns([3, 4]).every(function () {
+                    var column = this;
+                    column.search(currentYear).draw();
+                });
+                this.api().column(4).search('Ongoing').draw();
+            }
+        }); 
+        $('.search-input-dt-research-ongoing').on('keyup', function () {
+            var column = $(this).data('column');
+            dataTable.column(column).search(this.value).draw();
+        });
+        function recalculateResponsive() {
+            dataTable.responsive.recalc();
+        } 
+        $(window).resize(recalculateResponsive);
+    });
+    
+</script>
