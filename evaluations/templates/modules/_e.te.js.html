@@ -85,8 +85,6 @@
                 { "data": "sr_perf"},
                 { "data": "overall_ave_supervisor_rating"},
                 { "data": "sp_perf"},
-                //{ "data": "average_rating"},
-                { "data": "performance_score"},
                 //{ "data": "student_rating", "visible": false },
                 //{ "data": "student_interpretation", "visible": false },
                 {
@@ -94,23 +92,24 @@
                     "render": function (data, type, full, meta) {
 
                         const facultyName = full.faculty;
-                        const facultyScor = full.performance_score;
-                        const ave_rating = full.average_rating;
-                        const ar_interpretation = full.interpretation;
+                        const facultyScore = full.performance_score;
+                        const studentRate = full.overall_ave_student_rating;
+                        const supervisorRate = full.overall_ave_supervisor_rating;
 
                         return `<a href="#" data-bs-toggle="modal" 
                                             data-faculty-name="${facultyName}" 
-                                            data-faculty-scr="${facultyScor}"
-                                            data-faculty-ave="${ave_rating}"
-                                            data-ave-interp="${ar_interpretation}"
+                                            data-faculty-scr="${facultyScore}"
+                                            data-faculty-student="${studentRate}"
+                                            data-faculty-supervisor="${supervisorRate}"
                                         data-bs-target="#modal-average">
                                     <span class="col">See Details</span>
                                 </a>`;
                     }
-                }
+                },
+                { "data": "performance_score", "visible": false },
             ],    
             "columnDefs": [{
-                targets: [6], orderable: false,
+                targets: [5], orderable: false,
                 "className": "dt-left" 
             }],
             "pageLength": 5,
@@ -136,10 +135,10 @@
         var facultyScor = button.data('faculty-scr');
         $('#facultyScrSpan').text(facultyScor);
         
-        var ave_rating = button.data('faculty-ave');
-        $('#average_rate').text(ave_rating);
+        var student_rating = button.data('faculty-student');
+        $('#stRateSpan').text(student_rating);
         
-        var ar_interpretation = button.data('ave-interp');
-        $('#ave_interp').text(ar_interpretation);
+        var supervisor_rating = button.data('faculty-supervisor');
+        $('#svRateSpan').text(supervisor_rating);
     });
 </script>

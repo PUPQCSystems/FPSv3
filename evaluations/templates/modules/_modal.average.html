@@ -13,6 +13,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div class="py-1">
+                    <p class="py-1 text-muted">
+                        Teaching Effectiveness Performance computation here involves identifying the performance score of each rating and multiplying by corresponding percentage. <br/>
+                        <br/>
+                        For student rating, the percentage is 36% while supervisor rating is 24%. The two products will be summed up giving the overall performance score for this area.
+                    </p>
+                </div>
                 <div class="py-2">
                     <div class="row">
                         <h4 class="col-auto col-lg-6">Faculty Name:</h4>
@@ -38,11 +45,11 @@
                                     <div class="accordion-body">
                                         <div class="py-2">
                                             <p class="py-1 text-muted">
-                                                To convert the average rating into a performance score based on a scale of 100.00, you can follow these steps:
+                                                The calculation of average rating is based on sum of number on average ratings per faculty and divided by their number from values of academic year per semester. The computation involves:
                                                 <ul class="list-unstyled text-muted" style="margin-left: 1rem;">
-                                                    <li>1. Identify the highest rating (5.00), since both the highest student and supervisor ratings are out of 5.</li>
+                                                    <li>1. Identifying the highest rating (5.00), since both the highest student and supervisor ratings are out of 5.</li>
                                                         <br/>
-                                                    <li>2. To understand the rating range, below are the list of rating interpretation:</li>
+                                                    <li>2. Find the basis of each rating range based on the list of rating interpretation:</li>
                                                     <p class="text-muted">
                                                         <div class="row">
                                                             <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
@@ -62,23 +69,21 @@
                                                         </div>
                                                     </p>
                                                         <br/>
-                                                    <li>3. Score = ( Average Rating / Maximum Evaluation Rating ) * 100</li>
-                                                        <br/>
                                                 </ul>
                                             </p>
                                             <div class="row">
                                                 <div class="col-auto">
                                                     <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
                                                 </div>
-                                                <h4 class="col-auto">Average Rating:</h4>
-                                                <span id="average_rate" class="col-auto">0</span>
+                                                <h4 class="col-auto">Average Student Rating:</h4>
+                                                <span id="stRateSpan" class="col-auto">0</span>
                                             </div>
                                             <div class="row">
                                                 <div class="col-auto">
                                                     <svg  xmlns="http://www.w3.org/2000/svg" class="icon text-dark"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
                                                 </div>
-                                                <h4 class="col-auto">Interpretation:</h4>
-                                                <span id="ave_interp" class="col-auto">Not available</span>
+                                                <h4 class="col-auto">Average Supervisor Rating:</h4>
+                                                <span id="svRateSpan" class="col-auto">0</span>
                                             </div>
                                         </div>
                                     </div>

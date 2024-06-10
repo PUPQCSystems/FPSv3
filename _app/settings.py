@@ -133,13 +133,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / '/static/'
-STATICFILES_DIRS = [BASE_DIR / '_shared/static']
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / '_shared/static'
+STATICFILES_DIRS = [BASE_DIR / '_shared']
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

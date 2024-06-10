@@ -49,6 +49,7 @@
                                     <div class="row d-flex justify-content-center align-items-center">
                                         <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
                                             <li>Score Bracket</li><br/>
+                                            <li class="mb-2">40 Below</li>
                                             <li class="mb-2">41 - 50</li>
                                             <li class="mb-2">51 - 60</li>
                                             <li class="mb-2">61 - 70</li>
@@ -58,6 +59,7 @@
                                         </ul>
                                         <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
                                             <li>No. of Sub-rank Increment</li><br/>
+                                            <li class="mb-2"><span>: 0 sub rank</li>
                                             <li class="mb-2"><span>: 1 sub rank</li>
                                             <li class="mb-2"><span>: 2 sub rank</li>
                                             <li class="mb-2"><span>: 3 sub rank</li>
@@ -142,9 +144,9 @@
                                                             <span class="text-muted fw-bolder">General Weighted KRA Points computation explained below:</span>
                                                             <br/><br/>
                                                             <ul class="list-unstyled text-muted col-md-12 col-auto mt-3" style="padding: 0rem 2rem;">
-                                                                <li>a. KRA 1 (Teaching Evaluation) involve 2 semester of current academic year and getting average performance score from it.</li><br/>
-                                                                <li>b. KRA 2 (Research Published) involve count of published papers with corresponding score and getting average performance score from it.</li><br/>
-                                                                <li>c. KRA 3 (Professional Development Participation) and 4 (Extension Service Participation) involve count of participated conference, training, seminar, etc. with corresponding score and getting average performance score from it.</li><br/>
+                                                                <li>a. KRA 1 <b>(Teaching Evaluation)</b> involve 2 semester of current academic year and getting average performance score from it.</li><br/>
+                                                                <li>b. KRA 2 <b>(Research Publbshed)</b> involve count of published papers with corresponding score and getting average performance score from it.</li><br/>
+                                                                <li>c. KRA 3 <b>(Professional Development Participation)</b> & KRA 4 <b>(Extension Service Participation)</b> involve count of participated conference, training, seminar, etc. with corresponding score and getting average performance score from it.</li><br/>
                                                             </ul>
                                                             <div class="row">
                                                                 <ul class="list-unstyled text-muted col-auto" style="margin-left: 1rem;">
@@ -274,9 +276,6 @@
                                             data-rn-faculty="${faculty}" 
                                             data-bs-target="#modal-ranking">
                                     <span class="col">Reclassify Rank</span>
-                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="#" class="text-green disabled" style="cursor: no-drop;" >
-                                    <span class="col">View Details</span>
                                 </a>`;
                     }
                 },
@@ -298,7 +297,6 @@
     $('#modal-ranking').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var facultyName = button.data('rn-faculty');
-        //$('#facultyNameSpan').text(facultyName);
 
         $.ajax({
             type: "POST",
@@ -309,8 +307,6 @@
             },
             success: function(response) {
                 if(response.status === 'success') {
-                    //console.log('POST request was successful.');
-                    //console.log(response);
                     $.ajax({
                         type: "POST",
                         url: "{% url 'ranking:get_faculty_rank' %}",
@@ -319,8 +315,6 @@
                             'csrfmiddlewaretoken': '{{ csrf_token }}'
                         },
                         success: function(getResponse) {
-                            //alert('GET request was successful.');
-                            //console.log(getResponse);
                             $('#facultyNameSpan').text(getResponse.faculty_name);
                             $('#currentRankSpan').text(getResponse.current_faculty_rank);
                             $('#kra1Span').text(getResponse.kra1);
@@ -333,17 +327,14 @@
                             $('#impressionSpan').text(getResponse.impression);
                         },
                         error: function(getError) {
-                            //console.log('An error occurred during POST request.');
                             alert(getError);
                         }
                     });
                 } else {
-                    //console.log('Error in POST request.');
                     alert(response.message);
                 }
             },
             error: function(error) {
-                //console.log('An error occurred.');
                 alert(error);
             }
         });
@@ -365,5 +356,29 @@
         document.getElementById('totalPointsInput').value = document.getElementById('totalPointsSpan').innerText;
     });
 </script>
+
+<script>
+$(document).ready(function() {
+    $('#rankForm').on('submit', function(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function(response) {
+                alert(response.message);
+                if (response.message === "Reclassification of faculty rank has been completed.") {
+                    $('#rankForm')[0].reset();
+                    $('#rankForm').closest('.modal').modal('hide');
+                }
+            },
+            error: function(response) {
+                alert(response.responseJSON.message);
+            }
+        });
+    });
+});
+</script>
+
 
 {% endblock %}

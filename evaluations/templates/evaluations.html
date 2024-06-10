@@ -15,9 +15,9 @@
 
 <div class="page-body">
     <div class="container-xl">
-        {% comment %} {% include 'modules/_modal.student.html' %} {% endcomment %}
-        {% comment %} {% include 'modules/_modal.supervisor.html' %} {% endcomment %}
-        {% comment %} {% include 'modules/_modal.average.html' %} {% endcomment %}
+        {% include 'modules/_modal.student.html' %}
+        {% include 'modules/_modal.supervisor.html' %}
+        {% include 'modules/_modal.average.html' %}
         {% include 'components/evaluations.ax.html' %}
         {% include 'components/evaluations.dt.html' %}
     </div>
@@ -25,8 +25,8 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% include 'modules/_e.te.js.html' %}
-{% comment %} {% include 'modules/_e.te.student.js.html' %} {% endcomment %}
-{% comment %} {% include 'modules/_e.te.supervisor.js.html' %} {% endcomment %}
+{% include 'modules/_e.te.student.js.html' %}
+{% include 'modules/_e.te.supervisor.js.html' %}
 
 <script src="https://preview.tabler.io/dist/libs/apexcharts/dist/apexcharts.min.js?1695847769"></script>
 {% include 'modules/_student.charts.html' %}

@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+{% csrf_token %}
+<input type="hidden" id="csrf_token" value="{{ csrf_token }}">
 <div class="page-header d-print-none">
     <div class="container-xl">
         <div class="row g-2 align-items-center">
@@ -17,7 +19,7 @@
     <div class="container-xl">
         <div class="card">
             <div class="card-header">
-                <h3 class="mb-0">List of Regular Faculties</h3>
+                <h3 class="mb-0">List of Ranking Reports</h3>
             </div>
             <div class="card-body">
                 <div style="overflow: hidden !important;">
@@ -118,12 +120,11 @@
                     "data": null,
                     "render": function (data, type, full, meta) {
                         const faculty = full.faculty_name;
-                        return `<a href="#" class="fw-bolder "
-                                            data-bs-toggle="modal" 
-                                            data-rn-faculty="${faculty}" 
-                                            data-bs-target="#modal-reports">
-                                    <span class="col">Report</span>
-                                </a>`;
+                        return  `
+                                    <a href="#" class="fw-bolder" onclick="passtoBack('${faculty}')">
+                                        <span class="col">Report</span>
+                                    </a>
+                                `;
                     }
                 },
             ],  
@@ -137,5 +138,24 @@
         } 
         $(window).resize(recalculateResponsive);
     });
+
+    function passtoBack(faculty) {
+        var form = $('<form>', {
+            'method': 'POST',
+            'action': '{% url "management:export" %}'
+        });
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+        form.append($('<input>', {
+            'type': 'hidden',
+            'name': 'csrfmiddlewaretoken',
+            'value': csrfToken
+        }));
+        form.append($('<input>', {
+            'type': 'hidden',
+            'name': 'faculty_name',
+            'value': faculty
+        }));
+        form.appendTo('body').submit();
+    }
 </script>
 {% endblock %}

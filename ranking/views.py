@@ -16,6 +16,7 @@ from django.db.models import Count, Avg
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
 from django.utils import timezone
+from django.db.models import Avg, ExpressionWrapper, F, DecimalField
 
 
 
@@ -147,16 +148,37 @@ def compute_new_rank(current_faculty_rank, kra_one_score, kra_two_score, kra_thr
         return na_newrank, na_pts_score, na_increm, na_impres
 
 
+# def kra_1(request):
+#     semesters = ['First', 'Second']
+#     faculty_name = get_facultyname(request)
+#     academic_year = '2023-2024'
+#     faculty_evaluations = TeachingEffectiveness.objects.select_related('faculty') \
+#         .filter(faculty__faculty_name=faculty_name, semesters__in=semesters, academic_yr=academic_year)
+#     total_score = sum(float(eval_score.eval_performance_score) for eval_score in faculty_evaluations)
+#     average_score = total_score / len(faculty_evaluations) if faculty_evaluations else 0
+#     final_score = round(average_score, 2)
+#     return final_score
+
+
 def kra_1(request):
-    semesters = ['First', 'Second']
-    faculty_name = get_facultyname(request)
-    academic_year = '2023-2024'
-    faculty_evaluations = TeachingEffectiveness.objects.select_related('faculty') \
-        .filter(faculty__faculty_name=faculty_name, semesters__in=semesters, academic_yr=academic_year)
-    total_score = sum(float(eval_score.eval_performance_score) for eval_score in faculty_evaluations)
-    average_score = total_score / len(faculty_evaluations) if faculty_evaluations else 0
-    final_score = round(average_score, 2)
-    return final_score
+    facultyname = get_facultyname(request)
+    evaluations = TeachingEffectiveness.objects.select_related('faculty')\
+                    .filter(faculty__faculty_name=facultyname)\
+                    .annotate(
+                        overall_ave_student_rating=ExpressionWrapper(Avg(F('student_rate')), output_field=DecimalField()),
+                        overall_ave_supervisor_rating=ExpressionWrapper(Avg(F('supervisor_rate')), output_field=DecimalField()),
+                    ).first()
+    if not evaluations:
+        return 0
+    overall_ave_student_rating = evaluations.overall_ave_student_rating or 0
+    overall_ave_supervisor_rating = evaluations.overall_ave_supervisor_rating or 0
+    rounded_average = round(
+        round((float(overall_ave_student_rating) / 5) * 100 * 0.36, 2) +
+        round((float(overall_ave_supervisor_rating) / 5) * 100 * 0.24, 2),
+        2
+    )
+    return rounded_average
+
 
 
 def kra_2(request):
@@ -280,10 +302,15 @@ def POST_rankingtable(request):
         kra3 = request.POST.get('kra3')
         kra4 = request.POST.get('kra4')
         total_points = request.POST.get('total_points')
+        
         try:
             faculty = Faculty.objects.get(faculty_name=facultyname)
         except Faculty.DoesNotExist:
-            return HttpResponse("Faculty not found.", status=404)
+            return JsonResponse({"message": "Faculty not found."}, status=404)
+        
+        if FacultyRankEvaluations.objects.filter(faculty=faculty).exists():
+            return JsonResponse({"message": "Rank of this faculty is already assigned, double reclassification is not allowed."}, status=400)
+        
         evaluation = FacultyRankEvaluations(
             faculty=faculty,
             current_rank=current_rank,
@@ -298,5 +325,7 @@ def POST_rankingtable(request):
             rank_eval_date=timezone.now()
         )
         evaluation.save()
-        return HttpResponse("Form submitted and data saved successfully.")
-    return render(request, 'ranking.html')
+        
+        return JsonResponse({"message": "Reclassification of faculty rank has been completed."}, status=200)
+
+    return JsonResponse({"message": "Invalid request method."}, status=400)
