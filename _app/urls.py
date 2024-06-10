@@ -32,3 +32,6 @@ urlpatterns = [
     path('research/'        , include('research.urls'           , namespace = 'research'        )),
     path('extension/'       , include('extensionservices.urls'  , namespace = 'extension'       )),
 ]
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()
