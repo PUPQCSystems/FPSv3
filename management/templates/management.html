@@ -1,6 +1,6 @@
+
 {% extends "fps.html" %}
 {% load static %}
-
 {% block content %}
 {% csrf_token %}
 <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
