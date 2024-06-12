@@ -45,15 +45,15 @@
         const eval_studentChart = new ApexCharts(document.getElementById("studentrateChart"), options);
         eval_studentChart.render();
 
-        document.querySelectorAll('.dropdown-item').forEach(item => {
+        document.querySelectorAll('.cw').forEach(item => {
             item.addEventListener('click', event => {
                 event.preventDefault();
                 const selectedYearRange = event.target.getAttribute('data-student-year');
-                updateChartData(selectedYearRange);
+                updateSTCharts(selectedYearRange);
             });
         });
 
-        function updateChartData(academicYearRange) {
+        function updateSTCharts(academicYearRange) {
             if (academicYearRange === "all") {
                 renderOriginalChart();
                 return;

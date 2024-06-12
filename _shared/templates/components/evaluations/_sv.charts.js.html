@@ -44,15 +44,15 @@
         const eval_supervisorChart = new ApexCharts(document.getElementById("supervrateChart"), options);
         eval_supervisorChart.render();
 
-        document.querySelectorAll('.dropdown-item').forEach(item => {
+        document.querySelectorAll('.cw').forEach(item => {
             item.addEventListener('click', event => {
                 event.preventDefault();
                 const selectedYearRange = event.target.getAttribute('data-supervisor-year');
-                updateChartData(selectedYearRange);
+                updateSVCharts(selectedYearRange);
             });
         });
 
-        function updateChartData(academicYearRange) {
+        function updateSVCharts(academicYearRange) {
             if (academicYearRange === "all") {
                 renderOriginalChart();
                 return;
