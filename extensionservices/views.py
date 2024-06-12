@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Count
 from django.core.serializers.json import DjangoJSONEncoder
 
+
 @login_required(login_url='login')
 def extension_views(request):
     state = 'active'
@@ -53,7 +54,6 @@ def ax_extension_peryear(request):
         else:
             year_events[year] = entry['total_events']
     sorted_year_events = dict(sorted(year_events.items()))
-
     return json.dumps(
         [{'year': year, 'total_events': total_events} for year, total_events in sorted_year_events.items()],
         cls=DjangoJSONEncoder

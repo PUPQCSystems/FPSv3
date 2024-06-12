@@ -12,7 +12,12 @@
                 }
             </style>
             <div class="col-sm-6 col-lg-6 pop-on-hover ">
+                {% url 'dashboard:dashboard' as dashboard_url %}
+                {% if request.path == dashboard_url %}
+                <a href="{% url 'research:research' %}" class="text-decoration-none">
+                {% else %}
                 <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-count-research">
+                {% endif %}
                     <div class="card card-sm">
                         <div class="card-body" role="button">
                             <div class="row align-items-center">
@@ -32,7 +37,14 @@
                                         Published
                                     </div>
                                     <div class="text-muted">
+                                        {% url 'dashboard:dashboard' as dashboard_url %}
+                                        {% if request.path == dashboard_url %}
                                         Research Paper/s this Year
+                                        <br/>
+                                        <span class="text-blue">Check Details</span>
+                                        {% else %}
+                                        Research Paper/s this Year
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +53,12 @@
                 </a>
             </div>
             <div class="col-sm-6 col-lg-6 pop-on-hover ">
+                {% url 'dashboard:dashboard' as dashboard_url %}
+                {% if request.path == dashboard_url %}
+                <a href="{% url 'research:research' %}" class="text-decoration-none">
+                {% else %}
                 <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-count-research-unp">
+                {% endif %}
                     <div class="card card-sm">
                         <div class="card-body" role="button">
                             <div class="row align-items-center">
@@ -61,7 +78,14 @@
                                         Ongoing
                                     </div>
                                     <div class="text-muted">
+                                        {% url 'dashboard:dashboard' as dashboard_url %}
+                                        {% if request.path == dashboard_url %}
                                         Research Paper/s this Year
+                                        <br/>
+                                        <span class="text-blue">Check Details</span>
+                                        {% else %}
+                                        Research Paper/s this Year
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

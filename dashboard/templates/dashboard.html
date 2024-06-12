@@ -24,180 +24,28 @@
 
     <div class="page-body">
         <div class="container-xl">
-            <div class="empty">
-                <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_quitting_time_dm8t.svg" height="128" alt="">
+            <div class="mb-4">
+                {% include 'components/research/_card.rs_titlestatus.html' %}
+            </div>
+            <div class="mb-2">
+                {% include 'components/evaluations/evaluations.ax.html' %}
+            </div>
+            <div>
+                <div class="row row-deck row-cards">
+                    {% include 'components/prodevelopment/prodev.ax.html' %}
+                    {% include 'components/extensionservices/ext.ax.html' %}
                 </div>
-                <p class="empty-title">Temporarily down for maintenance</p>
-                <p class="empty-subtitle text-secondary">
-                    Sorry for the inconvenience but we’re performing some maintenance at the moment. We’ll be back online shortly!
-                </p>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        window.ApexCharts && (new ApexCharts(document.getElementById('chart-completion-tasks'), {
-            chart: {
-                type: "bar",
-                fontFamily: 'inherit',
-                height: 240,
-                parentHeightOffset: 0,
-                toolbar: {
-                    show: false,
-                },
-                animations: {
-                    enabled: false
-                },
-            },
-            plotOptions: {
-                bar: {
-                    columnWidth: '50%',
-                }
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            fill: {
-                opacity: 1,
-            },
-            series: [{
-                name: "Requirements Completion as of last sem.",
-                data: [115, 65, 45, 26, 25, 32, 180]
-            }],
-            tooltip: {
-                theme: 'dark'
-            },
-            grid: {
-                padding: {
-                    top: -20,
-                    right: 0,
-                    left: -4,
-                    bottom: -4
-                },
-                strokeDashArray: 4,
-            },
-            xaxis: {
-                labels: {
-                    padding: 0,
-                },
-                tooltip: {
-                    enabled: false
-                },
-                axisBorder: {
-                    show: false,
-                },
-                type: 'datetime',
-            },
-            yaxis: {
-                labels: {
-                    padding: 4
-                },
-            },
-            labels: [
-                '2017-12-23', '2018-12-23', '2019-12-23', '2020-12-23', '2021-12-23', '2022-12-23', '2023-12-23'
-            ],
-            colors: [tabler.getColor("info")],
-            legend: {
-                show: false,
-            },
-        })).render();
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        window.ApexCharts && (new ApexCharts(document.getElementById('chart-completion-tasks-1'), {
-            chart: {
-                type: "bar",
-                fontFamily: 'inherit',
-                height: 240,
-                parentHeightOffset: 0,
-                toolbar: {
-                    show: false,
-                },
-                animations: {
-                    enabled: false
-                },
-            },
-            plotOptions: {
-                bar: {
-                    columnWidth: '50%',
-                }
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            fill: {
-                opacity: 1,
-            },
-            series: [{
-                name: "Requirements Cancelled as of last sem.",
-                data: [55, 165, 45, 66, 21, 35, 18]
-            }],
-            tooltip: {
-                theme: 'dark'
-            },
-            grid: {
-                padding: {
-                    top: -20,
-                    right: 0,
-                    left: -4,
-                    bottom: -4
-                },
-                strokeDashArray: 4,
-            },
-            xaxis: {
-                labels: {
-                    padding: 0,
-                },
-                tooltip: {
-                    enabled: false
-                },
-                axisBorder: {
-                    show: false,
-                },
-                type: 'datetime',
-            },
-            yaxis: {
-                labels: {
-                    padding: 4
-                },
-            },
-            labels: [
-                '2017-12-23', '2018-12-23', '2019-12-23', '2020-12-23', '2021-12-23', '2022-12-23', '2023-12-23'
-            ],
-            colors: [tabler.getColor("gray")],
-            legend: {
-                show: false,
-            },
-        })).render();
-    });
-</script>
-<script>
-    // @formatter:off
-    document.addEventListener("DOMContentLoaded", function () {
-    let options = {
-        selector: '#tinymce-mytextarea',
-        height: 300,
-        menubar: false,
-        statusbar: false,
-        plugins: [
-        'advlist autolink lists link image charmap print preview anchor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table paste code help wordcount'
-        ],
-        toolbar: 'undo redo | formatselect | ' +
-        'bold italic backcolor | alignleft aligncenter ' +
-        'alignright alignjustify | bullist numlist outdent indent | ' +
-        'removeformat',
-    }
-    if (localStorage.getItem("tablerTheme") === 'dark') {
-        options.skin = 'oxide-dark';
-        options.content_css = 'dark';
-    }
-    tinyMCE.init(options);
-    })
-    // @formatter:on
-</script>   
+<script src="https://preview.tabler.io/dist/libs/apexcharts/dist/apexcharts.min.js?1695847769"></script>
+{% include 'components/evaluations/_st.charts.js.html' %}
+{% include 'components/evaluations/_sv.charts.js.html' %}
+
+{% include 'components/prodevelopment/_js.ax.scope.html' %}
+
+{% include 'components/extensionservices/_ax.role.js.html' %}
+
 {% endblock %}

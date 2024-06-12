@@ -16,7 +16,8 @@ from django.db.models import Count, Avg
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
 from django.utils import timezone
-from django.db.models import Avg, ExpressionWrapper, F, DecimalField
+from django.db.models import Avg, ExpressionWrapper, F, DecimalField, Count, Sum 
+from decimal import Decimal
 
 
 
@@ -162,22 +163,26 @@ def compute_new_rank(current_faculty_rank, kra_one_score, kra_two_score, kra_thr
 
 def kra_1(request):
     facultyname = get_facultyname(request)
-    evaluations = TeachingEffectiveness.objects.select_related('faculty')\
-                    .filter(faculty__faculty_name=facultyname)\
-                    .annotate(
-                        overall_ave_student_rating=ExpressionWrapper(Avg(F('student_rate')), output_field=DecimalField()),
-                        overall_ave_supervisor_rating=ExpressionWrapper(Avg(F('supervisor_rate')), output_field=DecimalField()),
-                    ).first()
+    evaluations = TeachingEffectiveness.objects.filter(faculty__faculty_name=facultyname).aggregate(
+        total_student_rating=Sum('student_rate'),
+        count_student_rating=Count('student_rate'),
+        total_supervisor_rating=Sum('supervisor_rate'),
+        count_supervisor_rating=Count('supervisor_rate')
+    )
     if not evaluations:
         return 0
-    overall_ave_student_rating = evaluations.overall_ave_student_rating or 0
-    overall_ave_supervisor_rating = evaluations.overall_ave_supervisor_rating or 0
-    rounded_average = round(
-        round((float(overall_ave_student_rating) / 5) * 100 * 0.36, 2) +
-        round((float(overall_ave_supervisor_rating) / 5) * 100 * 0.24, 2),
-        2
-    )
-    return rounded_average
+    total_student_rating = evaluations['total_student_rating'] or Decimal(0)
+    count_student_rating = evaluations['count_student_rating'] or 0
+    total_supervisor_rating = evaluations['total_supervisor_rating'] or Decimal(0)
+    count_supervisor_rating = evaluations['count_supervisor_rating'] or 0
+    overall_ave_student_rating = (total_student_rating / count_student_rating) if count_student_rating > 0 else Decimal(0)
+    overall_ave_supervisor_rating = (total_supervisor_rating / count_supervisor_rating) if count_supervisor_rating > 0 else Decimal(0)
+    sr_perf = round(((float(overall_ave_student_rating) / 5) * 100) * 0.36, 2)
+    sp_perf = round(((float(overall_ave_supervisor_rating) / 5) * 100) * 0.24, 2)
+    rounded_average = sr_perf + sp_perf
+    rounded_averagez = round(rounded_average, 2)
+
+    return rounded_averagez
 
 
 
@@ -199,7 +204,7 @@ def kra_3(request):
     total_score = sum(prodev_pts.prodev_performance_score for prodev_pts in prodev_counts)
     average_score = total_score / len(prodev_counts) if prodev_counts else 0
     rounded_average = round(average_score,2)
-    return rounded_average
+    return total_score
 
 
 def kra_4(request):
@@ -209,7 +214,7 @@ def kra_4(request):
     total_score = sum(extension_pts.extension_performance_score for extension_pts in extension_counts)
     average_score = total_score / len(extension_counts) if extension_counts else 0
     rounded_average = round(average_score,2)
-    return rounded_average
+    return total_score
 
 
 def get_faculty_rank(faculty_name):

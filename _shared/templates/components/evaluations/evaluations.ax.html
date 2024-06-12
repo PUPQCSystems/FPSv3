@@ -1,3 +1,5 @@
+{% load static %}
+
 {% comment %} Analytics: Student and Supervisor Rating {% endcomment %}
 <div class="row row-deck row-cards">
     <div class="col-lg-6">
@@ -5,6 +7,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <h3 class="col card-title mb-0 fw-bolder">Average Student Rating Per Academic Year</h3>
+                    {% url 'dashboard:dashboard' as dashboard_url %}
+                    {% if request.path == dashboard_url %}
+                    <div class="ms-auto lh-1">
+                        <a href="{% url 'evaluations:evaluations' %}">
+                            <span class="col">Check Details</span>
+                        </a>
+                    </div>
+                    {% else %}
                     <div class="ms-auto lh-1" style="margin-right: 1rem;">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modal-student-rating">
                             <span class="col">Details</span>
@@ -23,6 +33,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
                 <div id="studentrateChart" class="chart-lg"></div>
             </div>
@@ -33,6 +44,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <h3 class="col card-title mb-0 fw-bolder">Average Supervisor Rating Per Academic Year</h3>
+                    {% url 'dashboard:dashboard' as dashboard_url %}
+                    {% if request.path == dashboard_url %}
+                    <div class="ms-auto lh-1">
+                        <a href="{% url 'evaluations:evaluations' %}">
+                            <span class="col">Check Details</span>
+                        </a>
+                    </div>
+                    {% else %}
                     <div class="ms-auto lh-1" style="margin-right: 1rem;">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modal-supervisor-rating">
                             <span class="col">Details</span>
@@ -51,6 +70,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
                 <div id="supervrateChart" class="chart-lg"></div>
             </div>

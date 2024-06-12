@@ -19,7 +19,31 @@
     <div class="container-xl">
         <div class="card">
             <div class="card-header">
-                <h3 class="mb-0">List of Ranking Reports</h3>
+                <div class="row align-items-center">
+                    <h3 class="mb-0 me-auto">List of Ranking Reports</h3>
+                </div>
+                <div class="col-auto ms-auto">
+                    <div class="btn-list">
+                        <a href="#" class="btn btn-primary d-none d-sm-inline-block">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-download">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                <path d="M12 17v-6" /><path d="M9.5 14.5l2.5 2.5l2.5 -2.5" />
+                            </svg>
+                            Generate Report
+                        </a>
+                        <a href="#" class="btn btn-primary d-sm-none btn-icon" aria-label="Generate Report">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-download">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                <path d="M12 17v-6" />
+                                <path d="M9.5 14.5l2.5 2.5l2.5 -2.5" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div style="overflow: hidden !important;">
@@ -121,8 +145,8 @@
                     "render": function (data, type, full, meta) {
                         const faculty = full.faculty_name;
                         return  `
-                                    <a href="#" class="fw-bolder" onclick="passtoBack('${faculty}')">
-                                        <span class="col">Report</span>
+                                    <a href="#" onclick="passtoBack('${faculty}')">
+                                        <span class="col">Generate IPCR</span>
                                     </a>
                                 `;
                     }

@@ -1,5 +1,23 @@
 {% comment %} Analytics: Prodev Counts {% endcomment %}
 <div class="row row-deck row-cards">
+    {% url 'dashboard:dashboard' as dashboard_url %}
+    {% if request.path == dashboard_url %}
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <h3 class="col card-title mb-0 fw-bolder">Participation Scope Percentage</h3>
+                    <div class="ms-auto lh-1">
+                        <a href="{% url 'prodevelopment:prodevelopment' %}">
+                            <span class="col">Check Details</span>
+                        </a>
+                    </div>
+                </div>
+                <div id="participatedScopeCharts" class="chart-lg"></div>
+            </div>
+        </div>
+    </div>
+    {% else %}
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
@@ -30,4 +48,5 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
