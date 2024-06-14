@@ -23,3 +23,16 @@ def account_logout(request):
     logout(request)
     next_url = reverse('login') + '?next=logout'
     return redirect(next_url)
+
+
+def error_500view(request):
+    return render(request, 'errors/500.html', status=500)
+
+def error_404view(request, exception):
+    return render(request, 'errors/404.html', status=404)
+
+def error_403view(request, exception):
+    return render(request, 'errors/403.html', status=403)
+
+def error_400view(request, exception):
+    return render(request, 'errors/400.html', status=400)

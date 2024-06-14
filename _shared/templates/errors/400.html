@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="icon" href="{% static 'img/pupqcfaculty.png' %}">
+    <title>Faculty Performance System v.3</title>
+    {% include 'partials/_cs.html' %}
+</head>
+<body>
+    <div class="page page-center">
+        <div class="empty">
+            <div class="empty-header text-dark">400</div>
+            {% comment %} <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_quitting_time_dm8t.svg" height="128" alt=""></div> {% endcomment %}
+            <p class="empty-title">
+                Bad Request
+            </p>
+            <p class="empty-subtitle text-muted">
+                We cannot process your request because of a malformed request. Possible cause are invalid request message framing or deceptive request routing.
+            </p>
+            <div class="empty-action">
+                <a href="{% url 'dashboard:dashboard' %}" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M5 12l14 0" />
+                        <path d="M5 12l6 6" />
+                        <path d="M5 12l6 -6" />
+                    </svg>
+                    Return me home
+                </a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer footer-transparent d-print-none">
+        {% include 'partials/_footer.html' %}
+    </div>
+</body>
+    {% include 'partials/_js.html' %}
+</html>
