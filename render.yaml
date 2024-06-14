@@ -1,0 +1,3 @@
+services:
+  web:
+    command: gunicorn _app.wsgi:application

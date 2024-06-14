@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import handler500, handler404, handler403, handler400
-from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from _app import views
+from . import views
 
 handler500 = '_app.views.error_500view'
 handler404 = '_app.views.error_404view'
@@ -38,7 +39,4 @@ urlpatterns = [
     path('ranking/'         , include('ranking.urls'            , namespace = 'ranking'         )),
     path('research/'        , include('research.urls'           , namespace = 'research'        )),
     path('extension/'       , include('extensionservices.urls'  , namespace = 'extension'       )),
-]
-
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-urlpatterns += staticfiles_urlpatterns()
+] + staticfiles_urlpatterns()
