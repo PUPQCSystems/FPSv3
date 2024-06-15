@@ -6,7 +6,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel="icon" href="{% static 'img/pupqcfaculty.png' %}">
+    <link rel="icon" href="{% static 'img/fps.ico' %}">
     <title>Faculty Performance System v.3</title>
     {% include 'partials/_cs.html' %}
 </head>
@@ -16,7 +16,7 @@
             <div class="card card-md">
                 <div class="card-body">
                     <h2 class="h2 text-center mb-1">Faculty Performance System <span style="font-size: 0.7rem;">v.3</span></h2>
-                    <h2 class="h4 text-center mt-0 mb-4">Sign in to continue</h2>
+                    <h2 class="h4 text-center mt-0 mb-4 text-muted">Sign in to continue</h2>
                     <form action="{% url 'login' %}" method="post" novalidate>
                         {% csrf_token %}
                         <div class="mb-3">
