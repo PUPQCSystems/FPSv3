@@ -15,28 +15,33 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls import handler500, handler404, handler403, handler400
+from django.urls import path, include, re_path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from _app import views
-from . import views
+from django.conf import settings
+from django.views.static import serve
 
-handler500 = '_app.views.error_500view'
-handler404 = '_app.views.error_404view'
-handler403 = '_app.views.error_403view'
-handler400 = '_app.views.error_400view'
+from _app import views
+
+# Correct assignment of handlers to view functions
+handler500 = views.error_500view
+handler404 = views.error_404view
+handler403 = views.error_403view
+handler400 = views.error_400view
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.accounts_login , name='login'),
-    path('logout/', views.account_logout , name='logout'),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 
-    path('dashboard/'       , include('dashboard.urls'          , namespace = 'dashboard'       )),
-    path('accounts/'        , include('accounts.urls'           , namespace = 'accounts'        )),
-    path('evaluations/'     , include('evaluations.urls'        , namespace = 'evaluations'     )),
-    path('management/'      , include('management.urls'         , namespace = 'management'      )),
-    path('prodevelopment/'  , include('prodevelopment.urls'     , namespace = 'prodevelopment'  )),
-    path('ranking/'         , include('ranking.urls'            , namespace = 'ranking'         )),
-    path('research/'        , include('research.urls'           , namespace = 'research'        )),
-    path('extension/'       , include('extensionservices.urls'  , namespace = 'extension'       )),
+    path('admin/', admin.site.urls),
+    path('', views.accounts_login, name='login'),
+    path('logout/', views.account_logout, name='logout'),
+
+    path('dashboard/', include('dashboard.urls', namespace='dashboard')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('evaluations/', include('evaluations.urls', namespace='evaluations')),
+    path('management/', include('management.urls', namespace='management')),
+    path('prodevelopment/', include('prodevelopment.urls', namespace='prodevelopment')),
+    path('ranking/', include('ranking.urls', namespace='ranking')),
+    path('research/', include('research.urls', namespace='research')),
+    path('extension/', include('extensionservices.urls', namespace='extension')),
 ] + staticfiles_urlpatterns()
