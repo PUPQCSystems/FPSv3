@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="icon" href="{% static 'img/fps.ico' %}">
+    <title>Faculty Performance System v.3</title>
+    {% include 'partials/_cs.html' %}
+</head>
+<body>
+    <div class="page page-center">
+        <div class="container container-narrow py-4">
+            <div class="text-center mb-4">
+                <a href="." class="navbar-brand navbar-brand-autodark"><img src="{% static 'img/pupqcfaculty.png' %}" height="36" alt="FPS"> 
+                    <h2 class="mt-4">Faculty Performance System</h2>
+                </a>
+            </div>
+            <div class="card card-md">
+                <div class="card-body">
+                    <h3 class="card-title fw-bolder" style="color: #880000 !important;">Permission</h3>
+                    <div class="markdown">
+                        <p>Permission is hereby granted, free of charge, to any person obtaining a copy
+                            of this software and associated documentation files located at the documentation page, to deal
+                            in myPUPQC-FPS with slight restriction, including some limitation the rights
+                            to use only.
+                            <br/><br/>
+                            Other actions such as copy, modify, merge, publish, distribute, sublicense, and/or sell
+                            copies of myPUPQC - Faculty Performance System is prohibited.
+                            <br/><br/>
+                            Permitted persons to whom the Software is furnished to do so, subject to the following conditions:
+                        </p>
+                        <hr />
+                        <h3 class="fw-bolder" style="color: #880000 !important;">Condition</h3>
+                        <p>The following terms and conditions govern all use of the FPS website and all content, services, and products available at or through the website. PUP Online Services are offered subject to your acceptance without modification of all of the terms and conditions contained on the official website and all other operating rules, policies including, limited use and <a href="https://www.pup.edu.ph/terms/">PUP’s Terms Policy</a>.</p>
+                        <p>Please read detailed conditions from official site of <a href="https://www.pup.edu.ph">Polytechnic University of the Philippines</a>.</p>
+                        <p>Our Services are not directed to users younger than 16, and access and use of myPUPQC services is only offered to users 16 years of age or older. If you are under 16 years old, please do not to use our this website. Any person who is a user or provides their personal information to our Services represents that they are 16 years of age or older. Use of our services requires a Faculty Information System  account. You agree to provide us with complete and accurate information when you register for an account. You will be solely responsible and liable for any activity that occurs under your username/email. You are responsible for keeping your password secure.</p>
+                        <hr />
+                        <h3 class="fw-bolder" style="color: #880000 !important;">License</h3>
+                        <p>
+                            The Faculty Performance System is provided "as is", without warranty of any kind, express or implied, including limited use of this myPUPQC services, fitness for a particular purpose and non-infringment. In no event shall the authors or copyright holders be liable for any claimed damages or other liability.
+                        </p>
+                        <br/><br/>
+                        <a href="{% url 'dashboard:dashboard' %}">< Return me home</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer footer-transparent d-print-none">
+        {% include 'partials/_footer.html' %}
+    </div>
+</body>
+    {% include 'partials/_js.html' %}
+</html>

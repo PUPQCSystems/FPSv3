@@ -15,7 +15,7 @@
 </div>
 <div class="page-body">
     <div class="container-xl">
-        <div class="row g-3">
+        {% comment %} <div class="row g-3">
             <div class="col">
                 <ul class="timeline">
 
@@ -335,6 +335,20 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div> {% endcomment %}
+        <div class="empty">
+            <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_quitting_time_dm8t.svg" height="128" alt="">
+            </div>
+            <p class="empty-title">Temporarily down for maintenance</p>
+            <p class="empty-subtitle text-secondary">
+                Sorry for the inconvenience but we’re performing some maintenance at the moment. This will be fixed shortly!
+            </p>
+            <div class="empty-action">
+                <a href="{% url 'dashboard:dashboard' %}" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path d="M5 12l6 -6"></path></svg>
+                    Return to Dashboard
+                </a>    
             </div>
         </div>
     </div>

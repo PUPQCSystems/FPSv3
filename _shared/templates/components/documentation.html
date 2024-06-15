@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="icon" href="{% static 'img/fps.ico' %}">
+    <title>Faculty Performance System v.3</title>
+    {% include 'partials/_cs.html' %}
+</head>
+<body>
+    <div class="page page-center">
+        <div class="container container-narrow py-4">
+            <div class="text-center mb-4">
+                <a href="." class="navbar-brand navbar-brand-autodark"><img src="{% static 'img/pupqcfaculty.png' %}" height="36" alt="FPS"> 
+                    <h2 class="mt-4">Faculty Performance System</h2>
+                </a>
+            </div>
+            <div class="card card-md">
+                <div class="card-body">
+                    <div class="markdown">
+                        <h3 class="card-title fw-bolder" style="color: #880000 !important;">System Overview</h3>
+                        <p>
+                            The Faculty Performance System (FPS) is a web-based platform designed to streamline 
+                            the identification of key area of performance and ranking process for faculty at PUPQC.
+                        </p>
+                        <p>The system aims to:</p>
+                        <ul>
+                            <li>Provide a centralized and efficient way for academic head to evaluate performance data based on key areas.</li>
+                            <li>Offer chairs and administrators a clear view of regular faculty performance across various key areas.</li>
+                            <li>Automate calculations to generate faculty rankings based on pre-defined criteria.</li>
+                            <li>Promote transparency and fairness in the evaluation process.</li>
+                        </ul>
+                    </div>
+                    <hr />
+                    <div class="markdown">
+                        <h3 class="fw-bolder" style="color: #880000 !important;">Login</h3>
+                        <p>Office of Academic Affairs Chairman will log their exisiting institutional credentials upon system activation.</p>
+                        <p>Administrators will have access with designated login credentials.</p>
+                    </div>
+                    <hr />
+                    <div class="markdown">
+                        <h3 class="fw-bolder" style="color: #880000 !important;">Access</h3>
+                        <p>The FPS is accessible through most web browsers on desktops, laptops, and tablets.</p>
+                        <p>For optimal performance, we recommend using most common web browsers such Edge, Chrome, Firefox</p>
+                    </div>
+                    <hr />
+                    <div class="markdown">
+                        <h3 class="fw-bolder" style="color: #880000 !important;">Troubleshooting</h3>
+                        <p>In case of forgotten passwords, you can can contact the system administrator and follow the instructions to reset your password.</p>
+                        <p>If you encounter unexpected system behavior, please refresh the page or log out and log back in.</p>
+                        <p>Ensure you are using a supported web browser and have a stable internet connection.</p>
+                        <p>Review the user guide for specific instructions on how to use FPS and report access.</p>
+                        <p>If any system issue persists, please report it to the IT Helpdesk at <a href="https://www.pup.edu.ph/">PUPQC Helpdesk</a>.</p>
+                    </div>
+                    <hr />
+                    <div class="markdown">
+                        <h3 class="fw-bolder" style="color: #880000 !important;">Data Security</h3>
+                        <p>Polytechinc University of the Philippines is committed to protecting the privacy and security of all faculty data stored within the FPS. <b>All data is encrypted and access is restricted to authorized users only</b>.</p>
+                    </div>
+                    <hr />
+                    <div class="markdown">
+                        <h3 class="fw-bolder" style="color: #880000 !important;">Versioning</h3>
+                        <p>The FPS may undergo periodic updates and improvements. The latest user documentation and training materials will be made available on the Office of the Academic Affairs.</p>
+                        <br/><br/>
+                        <a href="{% url 'dashboard:dashboard' %}">< Return me home</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer footer-transparent d-print-none">
+        {% include 'partials/_footer.html' %}
+    </div>
+</body>
+    {% include 'partials/_js.html' %}
+</html>

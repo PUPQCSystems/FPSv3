@@ -4,6 +4,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def accounts_login(request):
     if request.method == 'POST':
@@ -19,6 +20,7 @@ def accounts_login(request):
     else:
         return render(request, 'registration/login.html')
 
+@login_required(login_url='login')
 def account_logout(request):
     logout(request)
     next_url = reverse('login') + '?next=logout'
@@ -36,3 +38,11 @@ def error_403view(request, exception):
 
 def error_400view(request, exception):
     return render(request, 'errors/400.html', status=400)
+
+@login_required(login_url='login')
+def license(request):
+    return render(request, 'components/license.html')
+
+@login_required(login_url='login')
+def documentation(request):
+    return render(request, 'components/documentation.html')

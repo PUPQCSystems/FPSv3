@@ -44,4 +44,7 @@ urlpatterns = [
     path('ranking/', include('ranking.urls', namespace='ranking')),
     path('research/', include('research.urls', namespace='research')),
     path('extension/', include('extensionservices.urls', namespace='extension')),
+    
+    path('license/', views.license, name='license'),
+    path('documentation/', views.documentation, name='documentation'),
 ] + staticfiles_urlpatterns()

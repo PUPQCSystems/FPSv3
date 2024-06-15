@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="container-xl">
+    <div class="row text-center align-items-center flex-row-reverse">
+        <div class="col-lg-auto ms-lg-auto">
+            <ul class="list-inline list-inline-dots mb-0">
+                <li class="list-inline-item">
+                    <a href="{% url 'documentation' %}" class="link-secondary">Documentation</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="{% url 'license' %}" class="link-secondary">License</a>
+                </li>
+            </ul>
+        </div>
+    <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+        <ul class="list-inline list-inline-dots mb-0">
+            <li class="list-inline-item">
+                Copyright © <span id="copyrightYear"></span> <a href="https://www.pup.edu.ph/quezoncity/" class="link-secondary">PUP Quezon City</a>
+                All rights reserved.
+            </li>
+                <li class="list-inline-item">
+                    <span class="link-secondary">
+                        v3.0.0-beta
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        document.getElementById("copyrightYear").textContent = new Date().getFullYear();
+    </script>
+</div>
