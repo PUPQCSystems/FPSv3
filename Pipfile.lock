@@ -180,14 +180,6 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.6.1"
         },
-        "email-validate": {
-            "hashes": [
-                "sha256:0f746d1600ab8a0b27795b39b01f37e64ec476885f4fa0f817e2e9a83ac5df5c",
-                "sha256:59eeb4e056a6347a2f55d06ebe9475918d75244e3a5be0f1ec833c67cc24b591"
-            ],
-            "index": "pypi",
-            "version": "==1.1.2"
-        },
         "filelock": {
             "hashes": [
                 "sha256:43339835842f110ca7ae60f1e1c160714c5a6afd15a2873419ab185334975c0f",
